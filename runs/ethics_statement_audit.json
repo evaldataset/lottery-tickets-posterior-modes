@@ -1,0 +1,36 @@
+{
+  "ethics_statement_audit_ready": true,
+  "paper_source": "paper/main.tex",
+  "iclr_submission_pdf": "paper/iclr_submission.pdf",
+  "required_source_phrases": [
+    "\\section*{Ethics Statement}",
+    "standard public benchmark datasets",
+    "does not introduce human subjects data",
+    "private personal data",
+    "surveillance data",
+    "safety-critical deployment claims",
+    "scientific overclaiming",
+    "controlled empirical result",
+    "Code of Ethics"
+  ],
+  "required_pdf_phrases": [
+    "standard public benchmark datasets",
+    "human subjects data",
+    "private personal data",
+    "scientific overclaiming",
+    "controlled empirical result",
+    "Code of Ethics"
+  ],
+  "missing_source_phrases": [],
+  "missing_pdf_phrases": [],
+  "risk_flags": [],
+  "open_risk_flags": [
+    "iclr_code_of_ethics_author_acknowledgement_not_recorded"
+  ],
+  "interpretation": {
+    "ethics_statement_present_in_iclr_pdf": true,
+    "no_human_subjects_or_private_data_claimed": true,
+    "overclaiming_risk_scoped": true,
+    "does_not_replace_final_iclr_author_acknowledgement": true
+  }
+}

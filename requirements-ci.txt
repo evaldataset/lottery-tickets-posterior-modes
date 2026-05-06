@@ -1,0 +1,12 @@
+# Minimal dependencies for generated-stat and artifact-verifier CI.
+# source-repository-check runs run_unit_smoke_tests.py, which exercises the
+# lottery package (torch + torchvision CPU paths and the sklearn digits
+# loader), so the CPU subset must include those pins. CPU-only torch wheels
+# come from the official PyTorch CPU index to keep the runner footprint
+# small; versions match requirements-lock.txt.
+--extra-index-url https://download.pytorch.org/whl/cpu
+numpy==1.26.4
+scikit-learn==1.4.1.post1
+scipy==1.11.4
+torch==2.11.0
+torchvision==0.26.0

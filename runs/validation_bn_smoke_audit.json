@@ -1,0 +1,55 @@
+{
+  "validation_bn_smoke_ready": true,
+  "run_root": "runs/fake_cifar10_validation_bn_policy_smoke",
+  "latest_metrics": "runs/fake_cifar10_validation_bn_policy_smoke/20260513_145944/metrics.json",
+  "summary_csv": "runs/fake_cifar10_validation_bn_policy_smoke_summary.csv",
+  "summary_md": "docs/fake_cifar10_validation_bn_policy_smoke.md",
+  "mask_artifact": "runs/fake_cifar10_validation_bn_policy_smoke/20260513_145944/mask_artifacts.npz",
+  "checks": {
+    "run_root_exists": true,
+    "metrics_present": true,
+    "summary_csv_present": true,
+    "summary_md_present": true,
+    "dataset_fake_cifar": true,
+    "model_resnet20": true,
+    "validation_fraction_positive": true,
+    "evaluation_split_val": true,
+    "subset_strategy_seeded": true,
+    "posterior_bn_policy_recalibrate": true,
+    "bn_recalibration_batches_recorded": true,
+    "reference_val_size_positive": true,
+    "mask_artifact_present": true,
+    "smoke_uses_mask_artifact_schema": true
+  },
+  "config": {
+    "dataset": "fake-cifar10",
+    "model": "resnet20",
+    "validation_fraction": 0.25,
+    "evaluation_split": "val",
+    "subset_strategy": "seeded",
+    "reference_train_size": 48,
+    "reference_val_size": 16,
+    "reference_test_size": 32
+  },
+  "posterior_sampler_config": {
+    "steps": 2,
+    "lr": 1e-07,
+    "temperature": 1.0,
+    "prior_precision": 0.0001,
+    "likelihood_scale": "dataset",
+    "burn_in": 0,
+    "sample_every": 1,
+    "posterior_bn_policy": "recalibrate",
+    "bn_recalibration_batches": 1
+  },
+  "open_risk_flags": [],
+  "risk_flags": [],
+  "interpretation": {
+    "validation_split_path_smoked": true,
+    "batchnorm_recalibration_path_smoked": true,
+    "seeded_subset_path_smoked": true,
+    "mask_artifact_path_smoked": true,
+    "full_cifar_validation_selected_rerun_observed": true,
+    "full_cifar_reruns_still_required": true
+  }
+}

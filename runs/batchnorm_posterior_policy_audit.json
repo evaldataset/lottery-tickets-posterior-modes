@@ -1,0 +1,231 @@
+{
+  "batchnorm_policy_audit_ready": true,
+  "batchnorm_module_occurrences_in_models_py": 7,
+  "rows": [
+    {
+      "path": "src/lottery/sgld.py",
+      "family": "SGLD",
+      "policy": "train_mode_stateful",
+      "expected": [
+        "model.train()",
+        "state_to_cpu(model)"
+      ],
+      "risk": "sgld_updates_batchnorm_buffers_during_sampling",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    },
+    {
+      "path": "src/lottery/sghmc.py",
+      "family": "SGHMC",
+      "policy": "train_mode_stateful",
+      "expected": [
+        "model.train()",
+        "state_to_cpu(model)"
+      ],
+      "risk": "sghmc_updates_batchnorm_buffers_during_sampling",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    },
+    {
+      "path": "src/lottery/cyclical_sgld.py",
+      "family": "cyclical SGLD",
+      "policy": "train_mode_stateful",
+      "expected": [
+        "model.train()",
+        "state_to_cpu(model)"
+      ],
+      "risk": "cyclical_sgld_updates_batchnorm_buffers_during_sampling",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    },
+    {
+      "path": "src/lottery/swag.py",
+      "family": "SWAG",
+      "policy": "train_mode_snapshot",
+      "expected": [
+        "model.train()",
+        "state_to_cpu(model)"
+      ],
+      "risk": "swag_snapshots_include_training_mode_batchnorm_buffers",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    },
+    {
+      "path": "src/lottery/diag_laplace.py",
+      "family": "diagonal Laplace",
+      "policy": "train_mode_fisher",
+      "expected": [
+        "model.train()",
+        "state_to_cpu(model)"
+      ],
+      "risk": "diag_laplace_fisher_uses_training_mode_batchnorm",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    },
+    {
+      "path": "src/lottery/hmc.py",
+      "family": "full HMC",
+      "policy": "train_mode_stateful",
+      "expected": [
+        "model.train()",
+        "state_to_cpu(model)"
+      ],
+      "risk": "full_hmc_updates_batchnorm_buffers_during_sampling",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    },
+    {
+      "path": "src/lottery/lowrank_laplace.py",
+      "family": "low-rank Laplace",
+      "policy": "configurable_batchnorm_mode_default_eval",
+      "expected": [
+        "batchnorm_mode: str = \"eval\"",
+        "_set_batchnorm_mode"
+      ],
+      "risk": "",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    },
+    {
+      "path": "src/lottery/subspace_hmc.py",
+      "family": "subspace HMC",
+      "policy": "configurable_batchnorm_mode_default_eval",
+      "expected": [
+        "batchnorm_mode: str = \"eval\"",
+        "_set_batchnorm_mode"
+      ],
+      "risk": "",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    },
+    {
+      "path": "src/lottery/block_laplace.py",
+      "family": "block/joint Laplace",
+      "policy": "eval_mode_curvature",
+      "expected": [
+        "model.eval()",
+        "state_to_cpu(model)"
+      ],
+      "risk": "",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    },
+    {
+      "path": "src/lottery/full_laplace.py",
+      "family": "full Laplace",
+      "policy": "eval_mode_curvature",
+      "expected": [
+        "model.eval()",
+        "state_to_cpu(model)"
+      ],
+      "risk": "",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    },
+    {
+      "path": "src/lottery/head_laplace.py",
+      "family": "head Laplace",
+      "policy": "eval_mode_curvature",
+      "expected": [
+        "model.eval()",
+        "state_to_cpu(model)"
+      ],
+      "risk": "",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    },
+    {
+      "path": "src/lottery/kfac_laplace.py",
+      "family": "KFAC Laplace",
+      "policy": "eval_mode_curvature",
+      "expected": [
+        "model.eval()",
+        "state_to_cpu(model)"
+      ],
+      "risk": "",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    }
+  ],
+  "script_rows": [
+    {
+      "path": "scripts/run_mode_ticket_distribution_probe.py",
+      "expected": [
+        "\"--lowrank-laplace-batchnorm-mode\"",
+        "default=\"eval\""
+      ],
+      "meaning": "direct LowRank Laplace runs expose a BN mode knob defaulting to eval.",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    },
+    {
+      "path": "scripts/run_mode_ticket_distribution_probe.py",
+      "expected": [
+        "\"--posterior-bn-policy\"",
+        "\"freeze\"",
+        "\"recalibrate\"",
+        "\"dense_buffers\""
+      ],
+      "meaning": "direct SGLD/SGHMC/cyclical-SGLD runs expose freeze, recalibration, and dense-buffer BatchNorm ablation knobs.",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    },
+    {
+      "path": "scripts/run_sgld_movement_grid.py",
+      "expected": [
+        "\"--lowrank-laplace-batchnorm-mode\"",
+        "default=\"eval\""
+      ],
+      "meaning": "movement LowRank Laplace runs expose a BN mode knob defaulting to eval.",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    },
+    {
+      "path": "scripts/run_subspace_hmc_probe.py",
+      "expected": [
+        "\"--hmc-batchnorm-mode\"",
+        "default=\"eval\""
+      ],
+      "meaning": "subspace-HMC runs expose a BN mode knob defaulting to eval.",
+      "exists": true,
+      "missing_expected_snippets": [],
+      "policy_detected": true
+    }
+  ],
+  "open_risk_flags": [
+    "sgld_updates_batchnorm_buffers_during_sampling",
+    "sghmc_updates_batchnorm_buffers_during_sampling",
+    "cyclical_sgld_updates_batchnorm_buffers_during_sampling",
+    "swag_snapshots_include_training_mode_batchnorm_buffers",
+    "diag_laplace_fisher_uses_training_mode_batchnorm",
+    "full_hmc_updates_batchnorm_buffers_during_sampling"
+  ],
+  "risk_flags": [],
+  "interpretation": {
+    "resnet_uses_batchnorm": true,
+    "train_mode_posterior_samplers_are_documented_open_risk": true,
+    "lowrank_and_subspace_paths_have_eval_default_knob": true,
+    "direct_sgld_family_bn_ablation_knobs_available": true,
+    "exact_laplace_paths_use_eval_mode": true
+  },
+  "recommended_next_experiments": [
+    "Run selected CIFAR SGLD/cSGLD rows with --posterior-bn-policy freeze.",
+    "Run selected CIFAR SGLD/cSGLD rows with --posterior-bn-policy recalibrate.",
+    "Run selected CIFAR rows with --posterior-bn-policy dense_buffers to bound buffer-only effects."
+  ]
+}

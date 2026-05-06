@@ -1,0 +1,82 @@
+{
+  "topk_tracking_bound_audit_ready": true,
+  "artifact": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_activation_aligned_saved_artifacts_r5_p0p3/20260506_230706/mask_artifacts.npz",
+  "kept_k": 45529,
+  "total_parameters": 270896,
+  "per_seed": [
+    {
+      "seed": 0,
+      "samples": 10,
+      "kept_k": 45529,
+      "tau": 0.05095069259405136,
+      "boundary_budget_b_tau": 9008.295594513937,
+      "predicted_jaccard_lower_bound": 0.6696464136582486,
+      "observed_jaccard_mean": 0.8823513740947819,
+      "observed_jaccard_min": 0.8449226031282924,
+      "bound_holds_for_mean": true,
+      "median_boundary_rho_within_2sigma_band": 1.0258395763872734
+    },
+    {
+      "seed": 1,
+      "samples": 10,
+      "kept_k": 45529,
+      "tau": 0.05201483555138111,
+      "boundary_budget_b_tau": 8887.27300879473,
+      "predicted_jaccard_lower_bound": 0.673359731661212,
+      "observed_jaccard_mean": 0.8836394729385854,
+      "observed_jaccard_min": 0.8430928043720272,
+      "bound_holds_for_mean": true,
+      "median_boundary_rho_within_2sigma_band": 1.0112279013276182
+    },
+    {
+      "seed": 2,
+      "samples": 10,
+      "kept_k": 45529,
+      "tau": 0.05142535865306854,
+      "boundary_budget_b_tau": 9106.736084241089,
+      "predicted_jaccard_lower_bound": 0.6666381113562851,
+      "observed_jaccard_mean": 0.8813817958416547,
+      "observed_jaccard_min": 0.8402247281839861,
+      "bound_holds_for_mean": true,
+      "median_boundary_rho_within_2sigma_band": 1.0159386083310233
+    },
+    {
+      "seed": 3,
+      "samples": 10,
+      "kept_k": 45529,
+      "tau": 0.05199125073850155,
+      "boundary_budget_b_tau": 9008.061225031455,
+      "predicted_jaccard_lower_bound": 0.6696535888553917,
+      "observed_jaccard_mean": 0.8823655920167504,
+      "observed_jaccard_min": 0.8426452435396726,
+      "bound_holds_for_mean": true,
+      "median_boundary_rho_within_2sigma_band": 1.0211555486436084
+    },
+    {
+      "seed": 4,
+      "samples": 10,
+      "kept_k": 45529,
+      "tau": 0.051661969348788264,
+      "boundary_budget_b_tau": 9108.366879420468,
+      "predicted_jaccard_lower_bound": 0.666588366180904,
+      "observed_jaccard_mean": 0.8815944337264112,
+      "observed_jaccard_min": 0.8436898904614388,
+      "bound_holds_for_mean": true,
+      "median_boundary_rho_within_2sigma_band": 1.0080095098615796
+    }
+  ],
+  "bound_holds_in_all_seeds": true,
+  "predicted_bound_range": [
+    0.666588366180904,
+    0.673359731661212
+  ],
+  "observed_mean_range": [
+    0.8813817958416547,
+    0.8836394729385854
+  ],
+  "interpretation": {
+    "gaussian_surrogate_bound_consistent_with_sgld_samples": true,
+    "bound_is_model_based_prediction_not_a_theorem_about_sgld": true,
+    "high_snr_limit_recovers_proposition_topk": true
+  }
+}

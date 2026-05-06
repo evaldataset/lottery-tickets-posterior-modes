@@ -1,0 +1,54 @@
+{
+  "unit_smoke_tests_ready": true,
+  "check_count": 5,
+  "checks": [
+    {
+      "name": "seed_determinism",
+      "passed": true,
+      "covers": [
+        "python_random",
+        "numpy_random",
+        "torch_random",
+        "cudnn_policy"
+      ]
+    },
+    {
+      "name": "mask_operations",
+      "passed": true,
+      "covers": [
+        "global_keep_count",
+        "sparsity",
+        "random_mask_determinism",
+        "weight_and_gradient_masking"
+      ]
+    },
+    {
+      "name": "evaluate_weighted_average",
+      "passed": true,
+      "covers": [
+        "sum_loss_over_examples",
+        "accuracy_over_examples",
+        "uneven_batch_sizes"
+      ]
+    },
+    {
+      "name": "data_splits",
+      "passed": true,
+      "covers": [
+        "seeded_subset_default_path",
+        "digits_validation_split",
+        "fake_cifar_validation_split"
+      ]
+    },
+    {
+      "name": "tempered_sgld",
+      "passed": true,
+      "covers": [
+        "tempered_sgld_sample_collection",
+        "tempered_sgld_swap_machinery",
+        "tempered_sgld_ladder_validation"
+      ]
+    }
+  ],
+  "risk_flags": []
+}

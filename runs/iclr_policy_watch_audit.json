@@ -1,0 +1,78 @@
+{
+  "iclr_policy_watch_audit_ready": true,
+  "observed_date": "2026-05-13",
+  "source_observation_mode": "recorded_live_probe",
+  "source_probe_json": "runs/iclr_policy_source_probe.json",
+  "source_probe_md": "docs/iclr_policy_source_probe.md",
+  "official_2027_cfp_observed": false,
+  "official_2027_author_guide_observed": false,
+  "official_source_observations": [
+    {
+      "role": "official_2027_call_for_papers_candidate",
+      "url": "https://iclr.cc/Conferences/2027/CallForPapers",
+      "observed_http_status": 404,
+      "observed_final_url": "https://iclr.cc/Conferences/2027/CallForPapers",
+      "observed": false,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "official_2027_author_guide_candidate",
+      "url": "https://iclr.cc/Conferences/2027/AuthorGuide",
+      "observed_http_status": 404,
+      "observed_final_url": "https://iclr.cc/Conferences/2027/AuthorGuide",
+      "observed": false,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "official_2026_call_for_papers_proxy",
+      "url": "https://iclr.cc/Conferences/2026/CallForPapers",
+      "observed_http_status": 200,
+      "observed_final_url": "https://iclr.cc/Conferences/2026/CallForPapers",
+      "observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "official_2026_author_guide_proxy",
+      "url": "https://iclr.cc/Conferences/2026/AuthorGuide",
+      "observed_http_status": 200,
+      "observed_final_url": "https://iclr.cc/Conferences/2026/AuthorGuide",
+      "observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    }
+  ],
+  "proxy_policy_facts": {
+    "proxy_year": "ICLR 2026",
+    "proxy_only_not_2027_policy": true,
+    "abstract_deadline": "September 19, 2025 AOE",
+    "full_paper_deadline": "September 24, 2025 11:59pm AOE",
+    "submission_system": "OpenReview",
+    "double_blind": true,
+    "main_text_page_limit_at_submission": 9,
+    "references_excluded_from_page_limit": true,
+    "appendix_allowed_but_review_optional": true,
+    "all_authors_need_openreview_profiles": true,
+    "new_authors_not_allowed_after_abstract_deadline": true,
+    "paper_must_be_anonymous": true,
+    "llm_usage_disclosure_required_when_significant": true,
+    "llms_not_eligible_for_authorship": true,
+    "authors_responsible_for_llm_generated_content": true,
+    "code_of_ethics_acknowledgement_required": true,
+    "reproducibility_statement_strongly_encouraged": true
+  },
+  "risk_flags": [],
+  "open_risk_flags": [
+    "iclr_2027_official_cfp_not_observed",
+    "iclr_2027_official_author_guide_not_observed"
+  ],
+  "interpretation": {
+    "official_2027_policy_not_confirmed": true,
+    "uses_2026_policy_as_provisional_proxy": true,
+    "uses_recorded_live_probe": true,
+    "must_refresh_after_iclr_2027_cfp_posts": true,
+    "must_not_claim_final_iclr_2027_compliance_yet": true
+  }
+}

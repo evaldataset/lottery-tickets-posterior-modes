@@ -1,0 +1,53 @@
+{
+  "iclr_human_confirmation_receipt_audit_ready": true,
+  "confirmations_completed": false,
+  "receipt_observed": false,
+  "receipt_path": "docs/iclr_human_confirmation_receipt.json",
+  "template": "runs/iclr_human_confirmation_template.json",
+  "expected_schema_version": "iclr_human_confirmation_receipt_v1",
+  "expected_pdf_sha256": "14f026795cbd89c1b133bbe7ab76c27607c8f561e8ffda5c297408a93cb7ff88",
+  "required_fields": [
+    "schema_version",
+    "author_names",
+    "author_emails",
+    "author_affiliations",
+    "author_openreview_profile_urls",
+    "author_order_confirmed",
+    "all_authors_have_openreview_profiles",
+    "conflicts_recorded_in_openreview",
+    "reciprocal_reviewing_policy_reviewed",
+    "code_of_ethics_acknowledged_by_all_authors",
+    "ethics_statement_confirmed_by_all_authors",
+    "llm_usage_disclosure_confirmed_by_all_authors",
+    "no_human_subjects_private_or_surveillance_data_confirmed",
+    "submission_agreement_confirmed",
+    "screened_pdf_sha256_confirmed",
+    "submitted_pdf_sha256_confirmed",
+    "openreview_submission_forum_url",
+    "openreview_submission_id",
+    "submitted_at_iso8601_with_timezone",
+    "confirmation_email_or_receipt_path"
+  ],
+  "field_statuses": [],
+  "private_field_status": {},
+  "risk_flags": [],
+  "open_risk_flags": [
+    "iclr_openreview_author_profile_and_coi_not_recorded",
+    "iclr_code_of_ethics_author_acknowledgement_not_recorded",
+    "llm_usage_disclosure_author_confirmation_not_recorded",
+    "iclr_openreview_submission_receipt_not_observed"
+  ],
+  "privacy": {
+    "does_not_echo_private_values": true,
+    "private_fields": [
+      "author_affiliations",
+      "author_emails",
+      "author_names",
+      "author_openreview_profile_urls",
+      "confirmation_email_or_receipt_path",
+      "conflicts_recorded_in_openreview",
+      "openreview_submission_forum_url",
+      "openreview_submission_id"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "paper_pdf_freshness_audit_ready": true,
+  "paper_tex": "paper/main.tex",
+  "paper_tex_mtime": 1781185161.5366638,
+  "pdfs": [
+    {
+      "path": "paper/main.pdf",
+      "exists": true,
+      "pdf_mtime": 1781185180.45967,
+      "stale_vs_source": false
+    },
+    {
+      "path": "paper/main_submission.pdf",
+      "exists": true,
+      "pdf_mtime": 1781185181.261606,
+      "stale_vs_source": false
+    },
+    {
+      "path": "paper/iclr_submission.pdf",
+      "exists": true,
+      "pdf_mtime": 1781185183.0536191,
+      "stale_vs_source": false
+    },
+    {
+      "path": "paper/neurips_submission.pdf",
+      "exists": true,
+      "pdf_mtime": 1781185182.2471633,
+      "stale_vs_source": false
+    }
+  ],
+  "risk_flags": []
+}

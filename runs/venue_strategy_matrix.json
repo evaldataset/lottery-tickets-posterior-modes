@@ -1,0 +1,540 @@
+{
+  "venue_strategy_matrix_ready": true,
+  "not_a_final_submission_gate": true,
+  "audit_date": "2026-05-13",
+  "source_observation_mode": "recorded_live_probe",
+  "source_probe_json": "runs/venue_source_probe.json",
+  "source_probe_md": "docs/venue_source_probe.md",
+  "paper": {
+    "source": "paper/main.tex",
+    "title": "Winning Tickets Are Not Posterior Modes: Evidence from Posterior Support and Magnitude Controls"
+  },
+  "decision": {
+    "primary_target": "TMLR (rolling)",
+    "first_backup": "ICLR 2027",
+    "second_backup": "AISTATS 2027",
+    "emergency_fallback": "ICDM 2026",
+    "do_not_chase_fast_deadlines": [
+      "CIKM 2026",
+      "EMNLP 2026"
+    ],
+    "rationale": "The current contribution is a controlled negative-result audit with a positive trajectory/process account, a Proposition, a locked final-test confirmation, and a reusable posterior-vs-IMP audit framework. TMLR's correctness-only acceptance criterion (novelty is explicitly not a rejection ground) and absence of a page limit accommodate this evidence density without forced scope cuts, and the local TMLR packet is already prepared, leaving only author OpenReview/COI inputs. ICLR 2027 remains a high-visibility backup once the official 2027 CFP is observed."
+  },
+  "source_probe_observations": [
+    {
+      "role": "iclr_2027_cfp_candidate",
+      "venue": "ICLR 2027",
+      "url": "https://iclr.cc/Conferences/2027/CallForPapers",
+      "observed_http_status": 404,
+      "observed_final_url": "https://iclr.cc/Conferences/2027/CallForPapers",
+      "expected_http_status": null,
+      "expected_http_status_until_posted": 404,
+      "keyword_hits": {},
+      "source_probe_ok": true,
+      "official_source_observed": false,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "iclr_2026_cfp_proxy",
+      "venue": "ICLR 2027",
+      "url": "https://iclr.cc/Conferences/2026/CallForPapers",
+      "observed_http_status": 200,
+      "observed_final_url": "https://iclr.cc/Conferences/2026/CallForPapers",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "Call for Papers": true,
+        "Final decisions": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "aistats_2026_cfp_proxy",
+      "venue": "AISTATS 2027",
+      "url": "https://virtual.aistats.org/Conferences/2026/CallForPapers",
+      "observed_http_status": 200,
+      "observed_final_url": "https://virtual.aistats.org/Conferences/2026/CallForPapers",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "September 25, 2025": true,
+        "October 2, 2025": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "aaai_26_main_track_proxy",
+      "venue": "AAAI 2027",
+      "url": "https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/",
+      "observed_http_status": 200,
+      "observed_final_url": "https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "July 25, 2025": true,
+        "August 1, 2025": true,
+        "Full papers due": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "icdm_2026_research_track",
+      "venue": "ICDM 2026",
+      "url": "https://www3.cs.stonybrook.edu/~icdm2026/dates/list.htm",
+      "observed_http_status": 200,
+      "observed_final_url": "https://www3.cs.stonybrook.edu/~icdm2026/dates/list.htm",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "Full Paper Submission": true,
+        "June 06, 2026": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "cikm_2026_full_research",
+      "venue": "CIKM 2026",
+      "url": "https://cikm2026.diag.uniroma1.it/full-research-papers/",
+      "observed_http_status": 200,
+      "observed_final_url": "https://cikm2026.diag.uniroma1.it/full-research-papers/",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "May 16, 2026": true,
+        "May 23, 2026": true,
+        "Full Paper Submission Deadline": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "bigdata_2026_cfp",
+      "venue": "BIGDATA 2026",
+      "url": "https://bigdataieee.org/BigData2026/calls/papers/",
+      "observed_http_status": 200,
+      "observed_final_url": "https://bigdataieee.org/BigData2026/calls/papers/",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "Aug. 21, 2026": true,
+        "Phoenix, AZ": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "wsdm_2027_host_bid_page",
+      "venue": "WSDM 2027",
+      "url": "https://www.wsdm-conference.org/calls.php",
+      "observed_http_status": 200,
+      "observed_final_url": "https://www.wsdm-conference.org/calls.php",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "Call for Bids to Host WSDM 2027": true,
+        "Asia or Oceania": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "emnlp_2026_main_cfp",
+      "venue": "EMNLP 2026",
+      "url": "https://2026.emnlp.org/calls/main_conference_papers/",
+      "observed_http_status": 200,
+      "observed_final_url": "https://2026.emnlp.org/calls/main_conference_papers/",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "ARR submission deadline": true,
+        "May 25, 2026": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "webconf_series_2027_listing",
+      "venue": "WWW 2027",
+      "url": "https://thewebconf.org/",
+      "observed_http_status": 200,
+      "observed_final_url": "https://thewebconf.org/",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "The ACM Web Conference 2027": true,
+        "Date TBD": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "icde_2027_research_track",
+      "venue": "ICDE 2027",
+      "url": "https://icde2027.github.io/cf-research-papers.html",
+      "observed_http_status": 200,
+      "observed_final_url": "https://icde2027.github.io/cf-research-papers.html",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "ICDE 2027 Call for Research Papers": true,
+        "June 11, 2026": true,
+        "November 11, 2026": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    }
+  ],
+  "rows": [
+    {
+      "venue": "TMLR (rolling)",
+      "rank": 1,
+      "recommendation": "primary target",
+      "score": 96,
+      "deadline": "rolling submission; no fixed deadline",
+      "deadline_iso": null,
+      "deadline_status": "rolling_submission_no_fixed_deadline",
+      "source_urls": [
+        "https://www.jmlr.org/tmlr/",
+        "https://www.jmlr.org/tmlr/editorial-policies.html"
+      ],
+      "source_observation": "TMLR uses rolling submission with a published editorial policy. Acceptance criterion is explicitly limited to correctness and support for claims; novelty/significance is not a rejection ground.",
+      "scope_fit": "excellent",
+      "why_fit": "TMLR's correctness-only acceptance criterion is the natural fit for a controlled negative-result audit. No page limit accommodates the operational gate, twelve-posterior-approximation harness, theory Proposition, locked final-test confirmation, and reusable audit framework as first-class contributions. Rolling decisions remove deadline-driven scope cuts and let the manuscript ship at full evidence density. The local TMLR packet (paste payload, snapshot, operator handoff bundle, final-gate audit) is already prepared; only author OpenReview profile, COI, and ethics confirmations remain.",
+      "required_reframing": "Foreground the operational support-equivalence gate, the trajectory/process positive account, and the audit framework as three first-class contributions, with the negative empirical result as the central evidence rather than the sole contribution.",
+      "main_risk": "Author OpenReview profile, COI/ethics/LLM/funding confirmations, and the external CUDA-host GPU-container receipt remain outstanding; these are blocking for submission but do not require any further empirical work.",
+      "days_until_exact_deadline": null
+    },
+    {
+      "venue": "ICLR 2027",
+      "rank": 2,
+      "recommendation": "high-visibility backup",
+      "score": 88,
+      "deadline": "September 2026 expected from ICLR 2026 pattern",
+      "deadline_iso": null,
+      "deadline_status": "official_iclr_2027_cfp_not_observed; 2026 official pattern only",
+      "source_urls": [
+        "https://iclr.cc/Conferences/2027/CallForPapers",
+        "https://iclr.cc/Conferences/2027/AuthorGuide",
+        "https://iclr.cc/Conferences/2026/CallForPapers"
+      ],
+      "source_observation": "Official 2027 CFP/Author Guide URLs are not observed; 2026 CFP is the only recorded official policy proxy.",
+      "scope_fit": "excellent",
+      "why_fit": "Core ML audience for posterior approximations, Bayesian deep learning, optimization, representation learning, pruning, and empirical negative results.",
+      "required_reframing": "Keep the paper framed as a falsifiable support-equivalence audit, not as a universal Bayesian-pruning impossibility claim.",
+      "main_risk": "Official 2027 CFP/author guide not observed; locked final-test, BN ablation, formal screening, and external validation remain open.",
+      "days_until_exact_deadline": null
+    },
+    {
+      "venue": "AISTATS 2027",
+      "rank": 3,
+      "recommendation": "statistics-audience backup",
+      "score": 86,
+      "deadline": "October 2026 expected from AISTATS 2026 pattern",
+      "deadline_iso": null,
+      "deadline_status": "official_2027_cfp_not_observed; 2026 official pattern only",
+      "source_urls": [
+        "https://virtual.aistats.org/Conferences/2026/CallForPapers"
+      ],
+      "source_observation": "Official AISTATS 2027 CFP is not observed. Official AISTATS 2026 CFP lists abstract September 25, 2025 AOE and full paper October 2, 2025 AOE, so October 2026 remains a pattern-based estimate.",
+      "scope_fit": "strong",
+      "why_fit": "Bayesian posterior support, approximation diagnostics, and statistical audit framing are natural for the AI/statistics audience.",
+      "required_reframing": "Move statistical reliability, hierarchical/seed-level tests, and posterior-support diagnostics to the foreground.",
+      "main_risk": "Current paper reads more like pruning/representation-learning than statistics unless the test design and uncertainty analysis are emphasized.",
+      "days_until_exact_deadline": null
+    },
+    {
+      "venue": "AAAI 2027",
+      "rank": 4,
+      "recommendation": "broad-AI backup",
+      "score": 78,
+      "deadline": "late July to early August 2026 per user-provided schedule; official CFP not verified here",
+      "deadline_iso": null,
+      "deadline_status": "user_supplied_deadline; official_aaai_2027_cfp_not_observed",
+      "source_urls": [
+        "https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/"
+      ],
+      "source_observation": "Official AAAI 2027 CFP is not observed. Official AAAI-26 main technical track lists July 25, 2025 abstract and August 1, 2025 full-paper deadlines, supporting only a pattern-based 2027 estimate.",
+      "scope_fit": "moderate_to_strong",
+      "why_fit": "Broad AI venue can absorb pruning, Bayesian learning, and empirical methodology if the contribution is made concise and general.",
+      "required_reframing": "Compress the argument around one clear reviewer-facing contribution and keep artifact details in supplementary material.",
+      "main_risk": "Shorter main-paper format and broad reviewer pool increase the risk of 'incremental negative result' reviews.",
+      "days_until_exact_deadline": null
+    },
+    {
+      "venue": "ICDM 2026",
+      "rank": 5,
+      "recommendation": "emergency fallback only",
+      "score": 64,
+      "deadline": "June 6, 2026",
+      "deadline_iso": "2026-06-06",
+      "deadline_status": "official deadline observed",
+      "source_urls": [
+        "https://www3.cs.stonybrook.edu/~icdm2026/",
+        "https://www3.cs.stonybrook.edu/~icdm2026/dates/list.htm"
+      ],
+      "source_observation": "Official IEEE ICDM 2026 research-track and dates pages list June 6, 2026 as the full-paper submission deadline.",
+      "scope_fit": "moderate",
+      "why_fit": "Machine learning and deep learning are in scope, but the paper is not primarily a data-mining algorithm or application paper.",
+      "required_reframing": "Present the work as a reproducible data-mining/ML evaluation protocol for sparse neural model discovery.",
+      "main_risk": "Less natural audience than ICLR/AISTATS; deadline leaves limited time to close locked final-test and BN risks.",
+      "days_until_exact_deadline": 24
+    },
+    {
+      "venue": "CIKM 2026",
+      "rank": 6,
+      "recommendation": "do not target unless rescoping radically",
+      "score": 53,
+      "deadline": "May 16, 2026 abstract; May 23, 2026 full paper",
+      "deadline_iso": "2026-05-23",
+      "deadline_status": "official deadline observed",
+      "source_urls": [
+        "https://cikm2026.diag.uniroma1.it/full-research-papers/"
+      ],
+      "source_observation": "Official CIKM 2026 full-research page lists May 16, 2026 abstract deadline and May 23, 2026 full-paper deadline.",
+      "scope_fit": "weak_to_moderate",
+      "why_fit": "CIKM covers AI/data science, but its core identity is information retrieval, knowledge management, and databases.",
+      "required_reframing": "Would need a data/knowledge discovery angle that the current paper does not naturally have.",
+      "main_risk": "Deadline is too close for the current unresolved top-tier blockers.",
+      "days_until_exact_deadline": 10
+    },
+    {
+      "venue": "BIGDATA 2026",
+      "rank": 7,
+      "recommendation": "low-priority fallback",
+      "score": 49,
+      "deadline": "August 21, 2026",
+      "deadline_iso": "2026-08-21",
+      "deadline_status": "official deadline observed",
+      "source_urls": [
+        "https://bigdataieee.org/BigData2026/calls/papers/"
+      ],
+      "source_observation": "Official IEEE BigData 2026 CFP lists August 21, 2026 as the full paper submission deadline and Dec 14-17, 2026 in Phoenix.",
+      "scope_fit": "weak_to_moderate",
+      "why_fit": "The venue emphasizes big-data foundations, infrastructure, 5V data challenges, and applications; this paper is a model-analysis study.",
+      "required_reframing": "Would need a scalability or big-data systems angle rather than only CIFAR/MNIST posterior diagnostics.",
+      "main_risk": "Scope mismatch and lower strategic value for the current contribution.",
+      "days_until_exact_deadline": 100
+    },
+    {
+      "venue": "WSDM 2027",
+      "rank": 8,
+      "recommendation": "do not target",
+      "score": 43,
+      "deadline": "August 11, 2026 per user-provided schedule; official 2027 CFP not verified here",
+      "deadline_iso": "2026-08-11",
+      "deadline_status": "user_supplied_deadline; 2027 official CFP not observed",
+      "source_urls": [
+        "https://www.wsdm-conference.org/calls.php"
+      ],
+      "source_observation": "Official WSDM site currently exposes a call for WSDM 2027 host bids in Asia/Oceania, not a 2027 paper CFP. The August 11, 2026 paper deadline remains user-supplied and unverified.",
+      "scope_fit": "weak",
+      "why_fit": "WSDM is search and web data mining; the paper has no web/search task.",
+      "required_reframing": "Would need a web-scale search, recommendation, or social/web mining problem, which would be a different paper.",
+      "main_risk": "High desk-review or reviewer-fit risk from scope mismatch.",
+      "days_until_exact_deadline": 90
+    },
+    {
+      "venue": "EMNLP 2026",
+      "rank": 9,
+      "recommendation": "do not target",
+      "score": 40,
+      "deadline": "May 25, 2026 ARR deadline",
+      "deadline_iso": "2026-05-25",
+      "deadline_status": "official deadline observed",
+      "source_urls": [
+        "https://2026.emnlp.org/calls/main_conference_papers/"
+      ],
+      "source_observation": "Official EMNLP 2026 main conference CFP lists May 25, 2026 as the ARR submission deadline and August 2, 2026 as the EMNLP commitment deadline.",
+      "scope_fit": "weak",
+      "why_fit": "The paper has no NLP task, language data, or language-model result.",
+      "required_reframing": "Would require new NLP experiments and a language-model interpretation angle, not just a style conversion.",
+      "main_risk": "Scope mismatch plus very short deadline.",
+      "days_until_exact_deadline": 12
+    },
+    {
+      "venue": "WWW 2027",
+      "rank": 10,
+      "recommendation": "do not target",
+      "score": 34,
+      "deadline": "November 2026 per user-provided schedule; official 2027 CFP not verified here",
+      "deadline_iso": null,
+      "deadline_status": "user_supplied_deadline; 2027 official CFP not observed",
+      "source_urls": [
+        "https://thewebconf.org/",
+        "https://www2026.thewebconf.org/calls/research-tracks.html"
+      ],
+      "source_observation": "Official TheWebConf series page lists The ACM Web Conference 2027 in Dublin with date TBD. A 2027 research-track CFP is not observed; November 2026 remains a user-supplied estimate.",
+      "scope_fit": "poor",
+      "why_fit": "The Web Conference requires explicit relevance to Web systems or Web-related scientific questions; this paper is general ML.",
+      "required_reframing": "Would require a real Web problem and new evidence.",
+      "main_risk": "Likely out of scope without major new Web-centered experiments.",
+      "days_until_exact_deadline": null
+    },
+    {
+      "venue": "ICDE 2027",
+      "rank": 11,
+      "recommendation": "do not target",
+      "score": 30,
+      "deadline": "June 11, 2026 first round; November 11, 2026 second round",
+      "deadline_iso": "2026-06-11",
+      "deadline_status": "official deadline observed",
+      "source_urls": [
+        "https://icde2027.github.io/cf-research-papers.html"
+      ],
+      "source_observation": "Official IEEE ICDE 2027 research-track CFP lists two submission rounds: June 11, 2026 and November 11, 2026.",
+      "scope_fit": "poor",
+      "why_fit": "ICDE is a data-engineering venue; prior ICDE guidance flags pure ML without data-management aspects as out of scope.",
+      "required_reframing": "Would require data management, scalability, or system contribution.",
+      "main_risk": "Strong scope mismatch.",
+      "days_until_exact_deadline": 29
+    }
+  ],
+  "official_source_summary": [
+    {
+      "venue": "TMLR (rolling)",
+      "deadline_status": "rolling_submission_no_fixed_deadline",
+      "source_observation": "TMLR uses rolling submission with a published editorial policy. Acceptance criterion is explicitly limited to correctness and support for claims; novelty/significance is not a rejection ground.",
+      "source_urls": [
+        "https://www.jmlr.org/tmlr/",
+        "https://www.jmlr.org/tmlr/editorial-policies.html"
+      ]
+    },
+    {
+      "venue": "ICLR 2027",
+      "deadline_status": "official_iclr_2027_cfp_not_observed; 2026 official pattern only",
+      "source_observation": "Official 2027 CFP/Author Guide URLs are not observed; 2026 CFP is the only recorded official policy proxy.",
+      "source_urls": [
+        "https://iclr.cc/Conferences/2027/CallForPapers",
+        "https://iclr.cc/Conferences/2027/AuthorGuide",
+        "https://iclr.cc/Conferences/2026/CallForPapers"
+      ]
+    },
+    {
+      "venue": "AISTATS 2027",
+      "deadline_status": "official_2027_cfp_not_observed; 2026 official pattern only",
+      "source_observation": "Official AISTATS 2027 CFP is not observed. Official AISTATS 2026 CFP lists abstract September 25, 2025 AOE and full paper October 2, 2025 AOE, so October 2026 remains a pattern-based estimate.",
+      "source_urls": [
+        "https://virtual.aistats.org/Conferences/2026/CallForPapers"
+      ]
+    },
+    {
+      "venue": "AAAI 2027",
+      "deadline_status": "user_supplied_deadline; official_aaai_2027_cfp_not_observed",
+      "source_observation": "Official AAAI 2027 CFP is not observed. Official AAAI-26 main technical track lists July 25, 2025 abstract and August 1, 2025 full-paper deadlines, supporting only a pattern-based 2027 estimate.",
+      "source_urls": [
+        "https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/"
+      ]
+    },
+    {
+      "venue": "ICDM 2026",
+      "deadline_status": "official deadline observed",
+      "source_observation": "Official IEEE ICDM 2026 research-track and dates pages list June 6, 2026 as the full-paper submission deadline.",
+      "source_urls": [
+        "https://www3.cs.stonybrook.edu/~icdm2026/",
+        "https://www3.cs.stonybrook.edu/~icdm2026/dates/list.htm"
+      ]
+    },
+    {
+      "venue": "CIKM 2026",
+      "deadline_status": "official deadline observed",
+      "source_observation": "Official CIKM 2026 full-research page lists May 16, 2026 abstract deadline and May 23, 2026 full-paper deadline.",
+      "source_urls": [
+        "https://cikm2026.diag.uniroma1.it/full-research-papers/"
+      ]
+    },
+    {
+      "venue": "BIGDATA 2026",
+      "deadline_status": "official deadline observed",
+      "source_observation": "Official IEEE BigData 2026 CFP lists August 21, 2026 as the full paper submission deadline and Dec 14-17, 2026 in Phoenix.",
+      "source_urls": [
+        "https://bigdataieee.org/BigData2026/calls/papers/"
+      ]
+    },
+    {
+      "venue": "WSDM 2027",
+      "deadline_status": "user_supplied_deadline; 2027 official CFP not observed",
+      "source_observation": "Official WSDM site currently exposes a call for WSDM 2027 host bids in Asia/Oceania, not a 2027 paper CFP. The August 11, 2026 paper deadline remains user-supplied and unverified.",
+      "source_urls": [
+        "https://www.wsdm-conference.org/calls.php"
+      ]
+    },
+    {
+      "venue": "EMNLP 2026",
+      "deadline_status": "official deadline observed",
+      "source_observation": "Official EMNLP 2026 main conference CFP lists May 25, 2026 as the ARR submission deadline and August 2, 2026 as the EMNLP commitment deadline.",
+      "source_urls": [
+        "https://2026.emnlp.org/calls/main_conference_papers/"
+      ]
+    },
+    {
+      "venue": "WWW 2027",
+      "deadline_status": "user_supplied_deadline; 2027 official CFP not observed",
+      "source_observation": "Official TheWebConf series page lists The ACM Web Conference 2027 in Dublin with date TBD. A 2027 research-track CFP is not observed; November 2026 remains a user-supplied estimate.",
+      "source_urls": [
+        "https://thewebconf.org/",
+        "https://www2026.thewebconf.org/calls/research-tracks.html"
+      ]
+    },
+    {
+      "venue": "ICDE 2027",
+      "deadline_status": "official deadline observed",
+      "source_observation": "Official IEEE ICDE 2027 research-track CFP lists two submission rounds: June 11, 2026 and November 11, 2026.",
+      "source_urls": [
+        "https://icde2027.github.io/cf-research-papers.html"
+      ]
+    }
+  ],
+  "risk_flags": [],
+  "open_risk_flags": [
+    "iclr_2027_official_cfp_not_observed",
+    "iclr_2027_official_author_guide_not_observed",
+    "aistats_2027_official_cfp_not_observed",
+    "aaai_2027_official_cfp_not_observed",
+    "wsdm_2027_official_cfp_not_observed",
+    "www_2027_official_cfp_not_observed",
+    "iclr_openreview_author_profile_and_coi_not_recorded",
+    "iclr_openreview_submission_receipt_not_observed",
+    "iclr_code_of_ethics_author_acknowledgement_not_recorded",
+    "llm_usage_disclosure_author_confirmation_not_recorded",
+    "public_release_archive_smoke_not_ready",
+    "public_release_upload_not_verified",
+    "public_repository_state_not_verified",
+    "external_ci_run_not_observed",
+    "external_gpu_container_run_not_observed",
+    "formal_external_plagiarism_database_screen_not_performed"
+  ],
+  "required_before_primary_submission": [
+    "run the locked final-test row from the validation-selected config",
+    "run full-CIFAR BatchNorm posterior-policy ablations",
+    "complete seed-level saved-artifact coverage for remaining direct rows or downscope the pooled statistics",
+    "complete formal external plagiarism/corpus screening",
+    "record final author OpenReview/COI/ethics/LLM confirmations",
+    "collect public release, public repository, external CI, and external CUDA/GPU receipts",
+    "submit the prepared TMLR packet via OpenReview after recording author OpenReview profile, COI, and ethics confirmations"
+  ]
+}

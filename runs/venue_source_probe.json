@@ -1,0 +1,195 @@
+{
+  "venue_source_probe_ready": true,
+  "observed_date": "2026-05-13",
+  "generated_at": "2026-05-13T13:47:48.697283+00:00",
+  "official_source_observations": [
+    {
+      "role": "iclr_2027_cfp_candidate",
+      "venue": "ICLR 2027",
+      "url": "https://iclr.cc/Conferences/2027/CallForPapers",
+      "observed_http_status": 404,
+      "observed_final_url": "https://iclr.cc/Conferences/2027/CallForPapers",
+      "expected_http_status": null,
+      "expected_http_status_until_posted": 404,
+      "keyword_hits": {},
+      "source_probe_ok": true,
+      "official_source_observed": false,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "iclr_2026_cfp_proxy",
+      "venue": "ICLR 2027",
+      "url": "https://iclr.cc/Conferences/2026/CallForPapers",
+      "observed_http_status": 200,
+      "observed_final_url": "https://iclr.cc/Conferences/2026/CallForPapers",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "Call for Papers": true,
+        "Final decisions": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "aistats_2026_cfp_proxy",
+      "venue": "AISTATS 2027",
+      "url": "https://virtual.aistats.org/Conferences/2026/CallForPapers",
+      "observed_http_status": 200,
+      "observed_final_url": "https://virtual.aistats.org/Conferences/2026/CallForPapers",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "September 25, 2025": true,
+        "October 2, 2025": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "aaai_26_main_track_proxy",
+      "venue": "AAAI 2027",
+      "url": "https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/",
+      "observed_http_status": 200,
+      "observed_final_url": "https://aaai.org/conference/aaai/aaai-26/main-technical-track-call/",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "July 25, 2025": true,
+        "August 1, 2025": true,
+        "Full papers due": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "icdm_2026_research_track",
+      "venue": "ICDM 2026",
+      "url": "https://www3.cs.stonybrook.edu/~icdm2026/dates/list.htm",
+      "observed_http_status": 200,
+      "observed_final_url": "https://www3.cs.stonybrook.edu/~icdm2026/dates/list.htm",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "Full Paper Submission": true,
+        "June 06, 2026": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "cikm_2026_full_research",
+      "venue": "CIKM 2026",
+      "url": "https://cikm2026.diag.uniroma1.it/full-research-papers/",
+      "observed_http_status": 200,
+      "observed_final_url": "https://cikm2026.diag.uniroma1.it/full-research-papers/",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "May 16, 2026": true,
+        "May 23, 2026": true,
+        "Full Paper Submission Deadline": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "bigdata_2026_cfp",
+      "venue": "BIGDATA 2026",
+      "url": "https://bigdataieee.org/BigData2026/calls/papers/",
+      "observed_http_status": 200,
+      "observed_final_url": "https://bigdataieee.org/BigData2026/calls/papers/",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "Aug. 21, 2026": true,
+        "Phoenix, AZ": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "wsdm_2027_host_bid_page",
+      "venue": "WSDM 2027",
+      "url": "https://www.wsdm-conference.org/calls.php",
+      "observed_http_status": 200,
+      "observed_final_url": "https://www.wsdm-conference.org/calls.php",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "Call for Bids to Host WSDM 2027": true,
+        "Asia or Oceania": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "emnlp_2026_main_cfp",
+      "venue": "EMNLP 2026",
+      "url": "https://2026.emnlp.org/calls/main_conference_papers/",
+      "observed_http_status": 200,
+      "observed_final_url": "https://2026.emnlp.org/calls/main_conference_papers/",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "ARR submission deadline": true,
+        "May 25, 2026": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "webconf_series_2027_listing",
+      "venue": "WWW 2027",
+      "url": "https://thewebconf.org/",
+      "observed_http_status": 200,
+      "observed_final_url": "https://thewebconf.org/",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "The ACM Web Conference 2027": true,
+        "Date TBD": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "icde_2027_research_track",
+      "venue": "ICDE 2027",
+      "url": "https://icde2027.github.io/cf-research-papers.html",
+      "observed_http_status": 200,
+      "observed_final_url": "https://icde2027.github.io/cf-research-papers.html",
+      "expected_http_status": 200,
+      "expected_http_status_until_posted": null,
+      "keyword_hits": {
+        "ICDE 2027 Call for Research Papers": true,
+        "June 11, 2026": true,
+        "November 11, 2026": true
+      },
+      "source_probe_ok": true,
+      "official_source_observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    }
+  ],
+  "target_count": 11
+}

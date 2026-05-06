@@ -1,0 +1,88 @@
+{
+  "iclr_human_confirmation_template_ready": true,
+  "confirmations_completed": false,
+  "risk_flags": [],
+  "open_risk_flags": [
+    "iclr_openreview_author_profile_and_coi_not_recorded",
+    "iclr_code_of_ethics_author_acknowledgement_not_recorded",
+    "llm_usage_disclosure_author_confirmation_not_recorded",
+    "iclr_openreview_submission_receipt_not_observed"
+  ],
+  "inputs": {
+    "openreview_packet": "runs/iclr_openreview_packet.json",
+    "policy_watch": "runs/iclr_policy_watch_audit.json",
+    "ethics_audit": "runs/ethics_statement_audit.json",
+    "llm_audit": "runs/llm_usage_disclosure_audit.json"
+  },
+  "receipt_intake_audit": {
+    "receipt_path": "docs/iclr_human_confirmation_receipt.json",
+    "audit_json": "runs/iclr_human_confirmation_receipt_audit.json",
+    "audit_md": "docs/iclr_human_confirmation_receipt_audit.md",
+    "strict_command": "python scripts/audit_iclr_human_confirmation_receipt.py --strict",
+    "schema_version": "iclr_human_confirmation_receipt_v1"
+  },
+  "required_confirmation_fields": [
+    "author_names",
+    "author_emails",
+    "author_affiliations",
+    "author_openreview_profile_urls",
+    "author_order_confirmed",
+    "all_authors_have_openreview_profiles",
+    "conflicts_recorded_in_openreview",
+    "reciprocal_reviewing_policy_reviewed",
+    "code_of_ethics_acknowledged_by_all_authors",
+    "ethics_statement_confirmed_by_all_authors",
+    "llm_usage_disclosure_confirmed_by_all_authors",
+    "no_human_subjects_private_or_surveillance_data_confirmed",
+    "submission_agreement_confirmed",
+    "screened_pdf_sha256_confirmed",
+    "submitted_pdf_sha256_confirmed",
+    "openreview_submission_forum_url",
+    "openreview_submission_id",
+    "submitted_at_iso8601_with_timezone",
+    "confirmation_email_or_receipt_path"
+  ],
+  "private_fields_not_for_public_release": [
+    "author_affiliations",
+    "author_emails",
+    "author_names",
+    "author_openreview_profile_urls",
+    "confirmation_email_or_receipt_path",
+    "conflicts_recorded_in_openreview",
+    "openreview_submission_forum_url",
+    "openreview_submission_id"
+  ],
+  "confirmation_template": {
+    "author_names": [],
+    "author_emails": [],
+    "author_affiliations": [],
+    "author_openreview_profile_urls": [],
+    "author_order_confirmed": false,
+    "all_authors_have_openreview_profiles": false,
+    "conflicts_recorded_in_openreview": false,
+    "reciprocal_reviewing_policy_reviewed": false,
+    "code_of_ethics_acknowledged_by_all_authors": false,
+    "ethics_statement_confirmed_by_all_authors": false,
+    "llm_usage_disclosure_confirmed_by_all_authors": false,
+    "no_human_subjects_private_or_surveillance_data_confirmed": false,
+    "submission_agreement_confirmed": false,
+    "screened_pdf_sha256_confirmed": "",
+    "submitted_pdf_sha256_confirmed": "14f026795cbd89c1b133bbe7ab76c27607c8f561e8ffda5c297408a93cb7ff88",
+    "openreview_submission_forum_url": "",
+    "openreview_submission_id": "",
+    "submitted_at_iso8601_with_timezone": "",
+    "confirmation_email_or_receipt_path": ""
+  },
+  "operator_instructions": [
+    "Copy the confirmation_template into a private local receipt file before final submission.",
+    "Do not commit author emails, OpenReview profile URLs, COI details, or confirmation email paths to the public release.",
+    "After submission, record the OpenReview forum URL, submission id, timestamp, and confirmation evidence privately.",
+    "Keep ready_to_submit false until all human confirmation booleans are true and the official ICLR 2027 policy has been rechecked."
+  ],
+  "interpretation": {
+    "template_only": true,
+    "does_not_record_private_author_information": true,
+    "does_not_replace_openreview_submission_receipt": true,
+    "human_confirmations_still_required": true
+  }
+}

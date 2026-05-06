@@ -1,0 +1,56 @@
+{
+  "manuscript_originality_audit_ready": true,
+  "paper": "paper/main.tex",
+  "sentence_count": 158,
+  "placeholder_findings": [],
+  "duplicate_sentence_findings": [],
+  "repeated_ngram_findings": [],
+  "related_work_citation_coverage": {
+    "section_present": true,
+    "paragraph_count": 6,
+    "paragraphs_without_citation": []
+  },
+  "claim_scope_audit": {
+    "required_scope_phrases": [
+      {
+        "phrase": "under the posterior families and CIFAR-10/MNIST/Fashion-MNIST settings tested here",
+        "present": true
+      },
+      {
+        "phrase": "controlled negative result under the posterior approximations we can currently test",
+        "present": true
+      },
+      {
+        "phrase": "not as a theorem about all Bayesian neural-network posteriors",
+        "present": true
+      },
+      {
+        "phrase": "Pooled direct mode/ticket p-values over posterior samples are descriptive",
+        "present": true
+      },
+      {
+        "phrase": "locked final-test rerun has been completed",
+        "present": true
+      },
+      {
+        "phrase": "BatchNorm buffers in sampled state dictionaries",
+        "present": true
+      },
+      {
+        "phrase": "exact dense full-network CIFAR posterior remains absent",
+        "present": true
+      }
+    ],
+    "forbidden_overclaim_findings": []
+  },
+  "risk_flags": [],
+  "open_risk_flags": [
+    "formal_external_plagiarism_database_screen_not_performed"
+  ],
+  "interpretation": {
+    "local_prose_screen_only": true,
+    "not_a_formal_plagiarism_detector": true,
+    "formal_external_screening_still_required": true,
+    "claim_scope_overclaim_guard_enabled": true
+  }
+}

@@ -1,0 +1,456 @@
+{
+  "familywise_null_audit_ready": true,
+  "alpha": 0.05,
+  "family_size_configs": 16,
+  "family_size_axes": 6,
+  "family_size_trials": 96,
+  "excluded_invalid_sampler_settings": [
+    {
+      "label": "sgld_bn_freeze",
+      "source": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_sgld_bn_freeze_r5_p0p3_summary.csv"
+    }
+  ],
+  "layer_ks_holm": [
+    {
+      "label": "csgld_independent_multichain",
+      "p_value": 9.302516737358442e-10,
+      "holm_rank": 1,
+      "holm_threshold": 0.003125,
+      "rejected_at_alpha": true
+    },
+    {
+      "label": "csgld_bn_freeze",
+      "p_value": 1.6605358745534294e-09,
+      "holm_rank": 2,
+      "holm_threshold": 0.0033333333333333335,
+      "rejected_at_alpha": true
+    },
+    {
+      "label": "csgld_bn_recalibrate",
+      "p_value": 1.6605358745534294e-09,
+      "holm_rank": 3,
+      "holm_threshold": 0.0035714285714285718,
+      "rejected_at_alpha": true
+    },
+    {
+      "label": "csgld_bn_dense_buffers",
+      "p_value": 1.6605358745534294e-09,
+      "holm_rank": 4,
+      "holm_threshold": 0.0038461538461538464,
+      "rejected_at_alpha": true
+    },
+    {
+      "label": "sgld_activation_aligned",
+      "p_value": 2.319489814193671e-09,
+      "holm_rank": 5,
+      "holm_threshold": 0.004166666666666667,
+      "rejected_at_alpha": true
+    },
+    {
+      "label": "tempered_sgld",
+      "p_value": 4.743132786406345e-09,
+      "holm_rank": 6,
+      "holm_threshold": 0.004545454545454546,
+      "rejected_at_alpha": true
+    },
+    {
+      "label": "sgld_locked_test",
+      "p_value": 8.520998815047309e-09,
+      "holm_rank": 7,
+      "holm_threshold": 0.005,
+      "rejected_at_alpha": true
+    },
+    {
+      "label": "sgld_bn_recalibrate",
+      "p_value": 8.520998815047309e-09,
+      "holm_rank": 8,
+      "holm_threshold": 0.005555555555555556,
+      "rejected_at_alpha": true
+    },
+    {
+      "label": "sgld_bn_dense_buffers",
+      "p_value": 8.520998815047309e-09,
+      "holm_rank": 9,
+      "holm_threshold": 0.00625,
+      "rejected_at_alpha": true
+    },
+    {
+      "label": "jointdiag_laplace_270k",
+      "p_value": 1.0853652897428057e-08,
+      "holm_rank": 10,
+      "holm_threshold": 0.0071428571428571435,
+      "rejected_at_alpha": true
+    },
+    {
+      "label": "sgld_weight_aligned",
+      "p_value": 1.2055984436281608e-08,
+      "holm_rank": 11,
+      "holm_threshold": 0.008333333333333333,
+      "rejected_at_alpha": true
+    },
+    {
+      "label": "csgld_multichain",
+      "p_value": 3.331308133038836e-08,
+      "holm_rank": 12,
+      "holm_threshold": 0.01,
+      "rejected_at_alpha": true
+    },
+    {
+      "label": "cifar100_sgld_locked_test",
+      "p_value": 9.017233157220336e-08,
+      "holm_rank": 13,
+      "holm_threshold": 0.0125,
+      "rejected_at_alpha": true
+    },
+    {
+      "label": "deep_ensemble",
+      "p_value": 5.322403109882352e-07,
+      "holm_rank": 14,
+      "holm_threshold": 0.016666666666666666,
+      "rejected_at_alpha": true
+    },
+    {
+      "label": "cifar100_sgld",
+      "p_value": 1.3376645811638738e-06,
+      "holm_rank": 15,
+      "holm_threshold": 0.025,
+      "rejected_at_alpha": true
+    },
+    {
+      "label": "lowrank128_laplace",
+      "p_value": 1.9819986687371347e-06,
+      "holm_rank": 16,
+      "holm_threshold": 0.05,
+      "rejected_at_alpha": true
+    }
+  ],
+  "layer_ks_all_rejections_survive_holm": true,
+  "per_axis_pass_counts": {
+    "passes_layer_ks": 0,
+    "passes_hamming_overlap": 2,
+    "passes_logit_cka": 16,
+    "passes_hungarian_cost": 16,
+    "passes_activation_cka": 14,
+    "passes_activation_hungarian_cost": 16
+  },
+  "mask_structure_axes": [
+    "passes_layer_ks",
+    "passes_hamming_overlap"
+  ],
+  "mask_structure_axis_pass_rates": {
+    "passes_layer_ks": 0.0,
+    "passes_hamming_overlap": 0.125
+  },
+  "observed_single_mask_axis_passers": [
+    "lowrank128_laplace",
+    "cifar100_sgld"
+  ],
+  "p_at_least_one_mask_axis_pass_under_pooled_rate": 0.8732112136229997,
+  "full_gate_passers": [],
+  "seed_direction_rows": [
+    {
+      "label": "saved_artifact_raw_saved_artifact",
+      "n_seeds": 5,
+      "seeds_in_observed_direction": 5,
+      "description": "posterior farther from own ticket than chain start",
+      "independent": true
+    },
+    {
+      "label": "saved_artifact_activation_aligned_saved_artifact",
+      "n_seeds": 5,
+      "seeds_in_observed_direction": 5,
+      "description": "posterior farther from own ticket than chain start",
+      "independent": false
+    },
+    {
+      "label": "tinycnn_imp_beats_dense_and_posterior_below_imp",
+      "n_seeds": 5,
+      "seeds_in_observed_direction": 5,
+      "description": "IMP beats dense chain start and posterior stays below IMP",
+      "independent": true
+    },
+    {
+      "label": "cifar100_imp_beats_dense_and_posterior_below_imp",
+      "n_seeds": 5,
+      "seeds_in_observed_direction": 5,
+      "description": "IMP beats dense chain start and posterior stays below IMP",
+      "independent": true
+    },
+    {
+      "label": "sgld_seed_extension_s5to9",
+      "n_seeds": 5,
+      "seeds_in_observed_direction": 5,
+      "description": "posterior farther from own ticket than chain start (seeds 5-9 raw masks)",
+      "independent": true
+    }
+  ],
+  "independent_seed_direction_rows": [
+    "saved_artifact_raw_saved_artifact",
+    "tinycnn_imp_beats_dense_and_posterior_below_imp",
+    "cifar100_imp_beats_dense_and_posterior_below_imp",
+    "sgld_seed_extension_s5to9"
+  ],
+  "joint_seed_direction_log10_p": -6.020599913279624,
+  "joint_seed_direction_p": 9.536743164062494e-07,
+  "sgld_ten_seed_total": 10,
+  "sgld_ten_seed_in_direction": 10,
+  "sgld_ten_seed_two_sided_sign_p": 0.001953125,
+  "family": [
+    {
+      "label": "sgld_locked_test",
+      "source": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_locked_test_sgld_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 8.520998815047309e-09,
+      "hamming_overlap": 0.0,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": false,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": true,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 0,
+      "pass_count": 4
+    },
+    {
+      "label": "sgld_activation_aligned",
+      "source": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_activation_aligned_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 2.319489814193671e-09,
+      "hamming_overlap": 0.0,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": false,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": true,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 0,
+      "pass_count": 4
+    },
+    {
+      "label": "sgld_weight_aligned",
+      "source": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_weight_aligned_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 1.2055984436281608e-08,
+      "hamming_overlap": 0.1820408163265306,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": false,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": true,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 0,
+      "pass_count": 4
+    },
+    {
+      "label": "csgld_multichain",
+      "source": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_csgld_multichain_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 3.331308133038836e-08,
+      "hamming_overlap": 0.24612612612612614,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": false,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": true,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 0,
+      "pass_count": 4
+    },
+    {
+      "label": "csgld_independent_multichain",
+      "source": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_csgld_independent_multichain_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 9.302516737358442e-10,
+      "hamming_overlap": 0.0,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": false,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": true,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 0,
+      "pass_count": 4
+    },
+    {
+      "label": "lowrank128_laplace",
+      "source": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_lowrank128_laplace_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 1.9819986687371347e-06,
+      "hamming_overlap": 0.8163265306122449,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": true,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": true,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 1,
+      "pass_count": 5
+    },
+    {
+      "label": "jointdiag_laplace_270k",
+      "source": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_jointdiag_laplace_max40k_stream_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 1.0853652897428057e-08,
+      "hamming_overlap": 0.0,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": false,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": true,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 0,
+      "pass_count": 4
+    },
+    {
+      "label": "sgld_bn_recalibrate",
+      "source": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_sgld_bn_recalibrate_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 8.520998815047309e-09,
+      "hamming_overlap": 0.0,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": false,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": true,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 0,
+      "pass_count": 4
+    },
+    {
+      "label": "sgld_bn_dense_buffers",
+      "source": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_sgld_bn_dense_buffers_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 8.520998815047309e-09,
+      "hamming_overlap": 0.0,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": false,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": true,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 0,
+      "pass_count": 4
+    },
+    {
+      "label": "csgld_bn_freeze",
+      "source": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_csgld_bn_freeze_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 1.6605358745534294e-09,
+      "hamming_overlap": 0.0,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": false,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": true,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 0,
+      "pass_count": 4
+    },
+    {
+      "label": "csgld_bn_recalibrate",
+      "source": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_csgld_bn_recalibrate_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 1.6605358745534294e-09,
+      "hamming_overlap": 0.0,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": false,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": true,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 0,
+      "pass_count": 4
+    },
+    {
+      "label": "csgld_bn_dense_buffers",
+      "source": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_csgld_bn_dense_buffers_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 1.6605358745534294e-09,
+      "hamming_overlap": 0.0,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": false,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": true,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 0,
+      "pass_count": 4
+    },
+    {
+      "label": "cifar100_sgld",
+      "source": "runs/cifar100_resnet20_long30_rewind1_mode_ticket_distribution_sgld_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 1.3376645811638738e-06,
+      "hamming_overlap": 0.8163265306122449,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": true,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": false,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 1,
+      "pass_count": 4
+    },
+    {
+      "label": "cifar100_sgld_locked_test",
+      "source": "runs/cifar100_resnet20_long30_rewind1_mode_ticket_distribution_locked_test_sgld_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 9.017233157220336e-08,
+      "hamming_overlap": 0.0,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": false,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": false,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 0,
+      "pass_count": 3
+    },
+    {
+      "label": "deep_ensemble",
+      "source": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_deep_ensemble_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 5.322403109882352e-07,
+      "hamming_overlap": 0.0,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": false,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": true,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 0,
+      "pass_count": 4
+    },
+    {
+      "label": "tempered_sgld",
+      "source": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_tempered_sgld_r5_p0p3_summary.csv",
+      "layer_ks_pvalue": 4.743132786406345e-09,
+      "hamming_overlap": 0.0,
+      "axes": {
+        "passes_layer_ks": false,
+        "passes_hamming_overlap": false,
+        "passes_logit_cka": true,
+        "passes_hungarian_cost": true,
+        "passes_activation_cka": true,
+        "passes_activation_hungarian_cost": true
+      },
+      "mask_structure_pass_count": 0,
+      "pass_count": 4
+    }
+  ]
+}
