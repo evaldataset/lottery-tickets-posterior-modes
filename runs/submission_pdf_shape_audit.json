@@ -1,0 +1,9 @@
+{
+  "submission_pdf": "paper/main_submission.pdf",
+  "pdf_page_count": 11,
+  "max_pages": 11,
+  "size_bytes": 320599,
+  "risk_flags": [],
+  "submission_pdf_ready": true,
+  "interpretation": "This audit checks the main-only submission PDF, excluding the appendix/generated evidence tables that remain in paper/main.pdf."
+}

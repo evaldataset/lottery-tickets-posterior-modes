@@ -1,0 +1,81 @@
+{
+  "gw_mask_metric_audit_ready": true,
+  "artifact": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_activation_aligned_saved_artifacts_r5_p0p3/20260506_230706/mask_artifacts.npz",
+  "self_distance_floor": 3.750450933282116e-06,
+  "permuted_distance": 3.7504509332821133e-06,
+  "permuted_hamming": 0.00698423011044829,
+  "invariance_ok": true,
+  "cross_ticket_gw_mean": 0.019003686415763464,
+  "cross_ticket_gw_values": [
+    0.01915840731952335,
+    0.019434068394034717,
+    0.01950359769414558,
+    0.019006418488696886,
+    0.01894192838268589,
+    0.019391391902873152,
+    0.01856102337593446,
+    0.019000529802072254,
+    0.018202779286219828,
+    0.01883671951144856
+  ],
+  "separation_ok": true,
+  "materiality_margin": 0.0009501843207881732,
+  "rescue_threshold": 0.009501843207881732,
+  "per_seed": [
+    {
+      "seed": 0,
+      "posterior_to_ticket_gw_mean": 0.019739700603655513,
+      "posterior_to_ticket_gw_min": 0.01917570977310065,
+      "chain_start_to_ticket_gw": 0.01977908290473499,
+      "posterior_minus_chain_gw": -3.938230107947832e-05,
+      "posterior_materially_closer": false,
+      "sample_count": 10
+    },
+    {
+      "seed": 1,
+      "posterior_to_ticket_gw_mean": 0.020080218788679736,
+      "posterior_to_ticket_gw_min": 0.01905145304791217,
+      "chain_start_to_ticket_gw": 0.020403555650407853,
+      "posterior_minus_chain_gw": -0.0003233368617281164,
+      "posterior_materially_closer": false,
+      "sample_count": 10
+    },
+    {
+      "seed": 2,
+      "posterior_to_ticket_gw_mean": 0.018482328606643835,
+      "posterior_to_ticket_gw_min": 0.018236132158408275,
+      "chain_start_to_ticket_gw": 0.018580888084667544,
+      "posterior_minus_chain_gw": -9.855947802370896e-05,
+      "posterior_materially_closer": false,
+      "sample_count": 10
+    },
+    {
+      "seed": 3,
+      "posterior_to_ticket_gw_mean": 0.019070616509185352,
+      "posterior_to_ticket_gw_min": 0.018458228041942137,
+      "chain_start_to_ticket_gw": 0.020234064090269874,
+      "posterior_minus_chain_gw": -0.0011634475810845223,
+      "posterior_materially_closer": true,
+      "sample_count": 10
+    },
+    {
+      "seed": 4,
+      "posterior_to_ticket_gw_mean": 0.018249841968937856,
+      "posterior_to_ticket_gw_min": 0.01782392131719466,
+      "chain_start_to_ticket_gw": 0.018950060438624135,
+      "posterior_minus_chain_gw": -0.0007002184696862784,
+      "posterior_materially_closer": false,
+      "sample_count": 10
+    }
+  ],
+  "seeds_posterior_materially_closer_than_chain": 1,
+  "seeds_rescued_by_permutation_invariance": 0,
+  "interpretation": {
+    "metric_is_channel_permutation_invariant": true,
+    "metric_separates_distinct_subnetworks": true,
+    "no_permutation_rescue_in_any_seed": true,
+    "posterior_to_ticket_stays_at_ticket_diversity_scale": true,
+    "posterior_vs_chain_gw_differences_are_marginal_and_mixed_sign_vs_hamming": true,
+    "per_tensor_coupling_is_a_relaxation_favoring_the_posterior": true
+  }
+}

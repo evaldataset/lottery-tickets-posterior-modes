@@ -1,0 +1,109 @@
+{
+  "locked_final_test_protocol_audit_ready": true,
+  "plan_json": "runs/validation_bn_rerun_plan.json",
+  "validation_entry": "validation_select_sgld_full_cifar",
+  "locked_entry": "locked_final_test_sgld_full_cifar",
+  "checks": {
+    "validation_entry_observed": true,
+    "validation_metrics_present": true,
+    "validation_evaluation_split_val": true,
+    "validation_fraction_0p1": true,
+    "validation_subset_seeded": true,
+    "validation_sampler_sgld": true,
+    "locked_entry_observed": true,
+    "locked_metrics_present": true,
+    "locked_command_has_selection_source_run": true,
+    "locked_command_has_selection_source_summary": true,
+    "locked_evaluation_split_test": true,
+    "locked_after_validation_selection": true,
+    "locked_selection_source_run_matches": true,
+    "locked_selection_source_summary_matches": true,
+    "locked_selection_source_run_exists": true,
+    "locked_selection_source_summary_exists": true
+  },
+  "paths": {
+    "validation_run_root": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_validation_select_sgld_r5_p0p3",
+    "validation_metrics": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_validation_select_sgld_r5_p0p3/20260513_150502/metrics.json",
+    "validation_summary_csv": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_validation_select_sgld_r5_p0p3_summary.csv",
+    "validation_summary_md": "docs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_validation_select_sgld_r5_p0p3.md",
+    "locked_run_root": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_locked_test_sgld_r5_p0p3",
+    "locked_metrics": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_locked_test_sgld_r5_p0p3/20260521_221111/metrics.json",
+    "locked_summary_csv": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_locked_test_sgld_r5_p0p3_summary.csv",
+    "locked_summary_md": "docs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_locked_test_sgld_r5_p0p3.md"
+  },
+  "summary_expected_comparisons": [
+    "chain_start_magnitude_vs_tickets",
+    "posterior_samples_vs_tickets",
+    "posterior_modes_vs_tickets"
+  ],
+  "summary_required_columns": [
+    "run",
+    "dataset",
+    "model",
+    "posterior_sampler",
+    "comparison"
+  ],
+  "summary_checks": {
+    "validation": {
+      "required": true,
+      "summary_csv": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_validation_select_sgld_r5_p0p3_summary.csv",
+      "summary_md": "docs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_validation_select_sgld_r5_p0p3.md",
+      "csv_exists": true,
+      "md_exists": true,
+      "csv_row_count": 3,
+      "csv_expected_comparisons_present": true,
+      "csv_required_columns_present": true,
+      "csv_sampler_matches": true,
+      "csv_run_matches_latest_metrics": true,
+      "md_split_matches": true,
+      "md_sampler_matches": true,
+      "md_run_matches_latest_metrics": true
+    },
+    "locked": {
+      "required": true,
+      "summary_csv": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_locked_test_sgld_r5_p0p3_summary.csv",
+      "summary_md": "docs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_locked_test_sgld_r5_p0p3.md",
+      "csv_exists": true,
+      "md_exists": true,
+      "csv_row_count": 3,
+      "csv_expected_comparisons_present": true,
+      "csv_required_columns_present": true,
+      "csv_sampler_matches": true,
+      "csv_run_matches_latest_metrics": true,
+      "md_split_matches": true,
+      "md_sampler_matches": true,
+      "md_run_matches_latest_metrics": true
+    }
+  },
+  "config_comparison_keys": [
+    "dataset",
+    "model",
+    "seeds",
+    "data_seed",
+    "validation_fraction",
+    "subset_strategy",
+    "epochs",
+    "rewind_epochs",
+    "imp_rounds",
+    "prune_fraction",
+    "posterior_sampler",
+    "posterior_sampler_config",
+    "samples_per_chain",
+    "posterior_chains",
+    "posterior_chain_init",
+    "samples_per_seed",
+    "alignment_method",
+    "alignment_batches"
+  ],
+  "config_mismatches": [],
+  "risk_flags": [],
+  "open_risk_flags": [],
+  "interpretation": {
+    "validation_selection_observed": true,
+    "locked_final_test_observed": true,
+    "missing_locked_final_test_is_open_blocker_not_a_protocol_mismatch": false,
+    "locked_final_test_must_match_validation_config_except_split": true,
+    "validation_summary_artifacts_observed": true,
+    "future_locked_summary_required_when_metrics_observed": true
+  }
+}

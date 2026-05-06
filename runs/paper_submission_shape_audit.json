@@ -1,0 +1,98 @@
+{
+  "paper_tex": "paper/main.tex",
+  "paper_pdf": "paper/main.pdf",
+  "reviewer_matrix": "runs/reviewer_objection_matrix.json",
+  "pdf_page_count": 20,
+  "total_tex_lines": 928,
+  "main_body_lines_before_appendix": 850,
+  "section_count": 9,
+  "sections": [
+    {
+      "title": "Introduction",
+      "start_line": 88,
+      "end_line": 154,
+      "lines": 67
+    },
+    {
+      "title": "Related Work",
+      "start_line": 155,
+      "end_line": 212,
+      "lines": 58
+    },
+    {
+      "title": "Operational Test",
+      "start_line": 213,
+      "end_line": 346,
+      "lines": 134
+    },
+    {
+      "title": "The Posterior-Mode Account Fails the Gates",
+      "start_line": 347,
+      "end_line": 612,
+      "lines": 266
+    },
+    {
+      "title": "What Winning Tickets Are: A Trajectory and Process Account",
+      "start_line": 613,
+      "end_line": 680,
+      "lines": 68
+    },
+    {
+      "title": "Discussion",
+      "start_line": 681,
+      "end_line": 729,
+      "lines": 49
+    },
+    {
+      "title": "Limitations and Next Experiments",
+      "start_line": 730,
+      "end_line": 851,
+      "lines": 122
+    },
+    {
+      "title": "Anticipated Reviewer Objections and Responses",
+      "start_line": 852,
+      "end_line": 917,
+      "lines": 66
+    },
+    {
+      "title": "Generated Evidence Tables",
+      "start_line": 918,
+      "end_line": 928,
+      "lines": 11
+    }
+  ],
+  "table_count": 2,
+  "figure_count": 3,
+  "paragraph_count": 20,
+  "reviewer_objection_rows": 9,
+  "objection_checks": {
+    "random_control": true,
+    "sampler_movement": true,
+    "function_vs_mask": true,
+    "alignment_permutation": true,
+    "covariance_fidelity": true,
+    "linear_connectivity": true,
+    "learned_masks": true,
+    "process_mechanism": true
+  },
+  "missing_sections": [],
+  "risk_flags": [],
+  "submission_shape_ready": true,
+  "compiled_pdf_page_count_includes_appendix": true,
+  "compiled_pdf_page_count_over_12": true,
+  "recommended_page_budget": {
+    "main_text_pages": "8-10",
+    "appendix_pages": "unbounded supplemental",
+    "compiled_pdf_pages": "reported for visibility; may include appendix/generated tables",
+    "current_results_target_lines": 450,
+    "main_body_target_lines": 850
+  },
+  "recommended_cuts": [
+    "Move most residual-process variants to appendix tables and keep only the strongest tensor+score and learned-subspace rows in the main narrative.",
+    "Collapse posterior-family movement details into one main table plus one paragraph per objection class.",
+    "Move fake-CIFAR and tiny full-network code-path smokes to reproducibility or appendix text.",
+    "Keep the direct CIFAR mode/ticket row, channel-permutation audit, and covariance-feasibility limitation in the main paper.",
+    "Convert the reviewer objection matrix into the paper's main-result organization."
+  ]
+}

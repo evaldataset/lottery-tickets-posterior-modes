@@ -1,0 +1,31 @@
+{
+  "llm_usage_disclosure_audit_ready": true,
+  "paper_source": "paper/main.tex",
+  "iclr_submission_pdf": "paper/iclr_submission.pdf",
+  "required_source_phrases": [
+    "\\section*{LLM Usage Disclosure}",
+    "LLM-based coding and writing assistants",
+    "audit and runbook scripts",
+    "reproducibility and submission-checklist documentation",
+    "not used as authors",
+    "not treated as sources of scientific evidence",
+    "reviewed and accepted by the human authors"
+  ],
+  "required_pdf_phrases": [
+    "LLM-based coding and writing assistants",
+    "not used as authors",
+    "not treated as sources of scientific evidence",
+    "reviewed and accepted by the human authors"
+  ],
+  "missing_source_phrases": [],
+  "missing_pdf_phrases": [],
+  "risk_flags": [],
+  "open_risk_flags": [
+    "llm_usage_disclosure_author_confirmation_not_recorded"
+  ],
+  "interpretation": {
+    "iclr_style_disclosure_section_present": true,
+    "does_not_replace_author_confirmation": true,
+    "must_refresh_after_official_iclr_2027_policy_posts": true
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "iclr_policy_source_probe_ready": true,
+  "observed_date": "2026-05-13",
+  "generated_at": "2026-05-13T12:26:49.273509+00:00",
+  "official_source_observations": [
+    {
+      "role": "official_2027_call_for_papers_candidate",
+      "url": "https://iclr.cc/Conferences/2027/CallForPapers",
+      "observed_http_status": 404,
+      "observed_final_url": "https://iclr.cc/Conferences/2027/CallForPapers",
+      "observed": false,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "official_2027_author_guide_candidate",
+      "url": "https://iclr.cc/Conferences/2027/AuthorGuide",
+      "observed_http_status": 404,
+      "observed_final_url": "https://iclr.cc/Conferences/2027/AuthorGuide",
+      "observed": false,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "official_2026_call_for_papers_proxy",
+      "url": "https://iclr.cc/Conferences/2026/CallForPapers",
+      "observed_http_status": 200,
+      "observed_final_url": "https://iclr.cc/Conferences/2026/CallForPapers",
+      "observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    },
+    {
+      "role": "official_2026_author_guide_proxy",
+      "url": "https://iclr.cc/Conferences/2026/AuthorGuide",
+      "observed_http_status": 200,
+      "observed_final_url": "https://iclr.cc/Conferences/2026/AuthorGuide",
+      "observed": true,
+      "probe_error": null,
+      "observation_source": "live_probe"
+    }
+  ],
+  "expected_live_statuses": [
+    {
+      "role": "official_2027_call_for_papers_candidate",
+      "url": "https://iclr.cc/Conferences/2027/CallForPapers",
+      "expected_http_status_until_posted": 404
+    },
+    {
+      "role": "official_2027_author_guide_candidate",
+      "url": "https://iclr.cc/Conferences/2027/AuthorGuide",
+      "expected_http_status_until_posted": 404
+    },
+    {
+      "role": "official_2026_call_for_papers_proxy",
+      "url": "https://iclr.cc/Conferences/2026/CallForPapers",
+      "observed_http_status": 200
+    },
+    {
+      "role": "official_2026_author_guide_proxy",
+      "url": "https://iclr.cc/Conferences/2026/AuthorGuide",
+      "observed_http_status": 200
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+# Proposal To Artifact Audit
+
+This audit maps `proposal_A3_lottery_ticket_bayesian_modes.md` to the current evidence and submission state.
+
+- Verified: True
+- Goal complete: False
+- Rows: 10
+- Open or bounded rows: 3
+
+## Rows
+
+| Proposal item | Status | Current resolution | Key numbers | Remaining gap |
+| --- | --- | --- | --- | --- |
+| Source proposal and thesis reframing | covered_negative_reframe | The positive 1:1 mode-ticket thesis has been reframed as a scoped negative support-equivalence paper. | paper title and roadmap both state the negative posterior-mode resolution | Venue editing can tighten wording, but the claim direction is settled in the current draft. |
+| H1: lottery tickets correspond one-to-one to posterior modes | falsified_current_artifacts | Falsified under the current support-distribution and direct mode/ticket tests. | posterior>random 58/59; posterior>chain by >0.005 0/59; rewind>posterior by >0.005 55/57; direct CIFAR sample rows one-cluster 7/7, layer-KS failures 7/7, hamming failures 6/7 | Exact dense full-covariance CIFAR posterior evidence is infeasible locally and remains bounded rather than closed. |
+| H2: posterior mode count determines ticket diversity | unsupported_current_artifacts | Unsupported: full-data direct posterior rows collapse to one posterior basin while IMP keeps seed-level ticket diversity. | direct sample rows with one posterior cluster 7/7; LowRank128Lap p=1.98e-06, hamming=0.8163; JointDiag270k p=1.09e-08, hamming=0.0000 | A different exact posterior method could be proposed, but current covariance-fidelity trend does not point toward rescue. |
+| H3: variational mode-finding pruning should match accuracy and improve calibration | covered_negative | Partially implemented and negative for the paper claim: variational pruning can lower ECE but loses accuracy, Brier, OOD AUROC, and ticket support. | digits variational accuracy-IMP -0.0078; digits support-to-IMP 0.3822; CIFAR variational acc/AUROC 0.8301/0.7754 vs IMP 0.8953/0.8306 | Do not expand into a broad pruning benchmark unless reviewers ask; the current baseline is enough for the scoped negative claim. |
+| H4: random-weight networks as prior mode finding | bounded_negative | Bounded by learned-mask controls rather than developed into a separate Ramanujan-style study. | full-data learned-mask support-to-IMP: gem_miner=0.0917, variational_prune=0.0907, hard_concrete=0.0922; IMP accuracy 0.8983 | A full random-weight-network replication is de-scoped; the submitted paper should state this as out of scope. |
+| Posterior sampler and covariance-fidelity ladder | covered_with_bounded_limitation | Covered across stochastic samplers, SWAG, Laplace variants, subspace HMC, and covariance-fidelity audits. | movement samplers=DiagLap, KFACLap, LowRank128Lap, LowRank32Lap, LowRank64Lap, LowRankLap, SGHMC, SGLD, SWAG20, cSGLD; covariance movement rows=9; direct rows=2; dense full covariance memory=553.1466 GiB | Literal dense full-covariance CIFAR posterior is outside the single-workstation memory budget. |
+| Proposal metrics: KS, MMD, Wasserstein, Hamming, CKA, Hungarian, basin entropy | covered | Implemented in direct mode/ticket distribution probes and summarized into paper statistics. | required direct metric keys present in the current CIFAR direct rows | Metric interpretation should remain explicit: function-space CKA alone is not enough for H1. |
+| Permutation and alignment risk | bounded_open_limitation | First-order activation/weight alignment is negative; saved-artifact record matching and global channel audits bound the post-hoc issue. | aligned rows fail layer-KS=True; global channel supported=True; stage-1 exact assignments=128; full search log10 assignments=840.4 | Exhaustive full-data graph/channel search is infeasible and unimplemented. |
+| Top-conference venue targeting | venue_target_selected | Venue triage is now explicit: TMLR (rolling) is the primary target with a fully prepared local packet, ICLR 2027 and AISTATS 2027 are high-visibility backups, and faster CIKM/EMNLP deadlines are rejected unless the paper is substantially rescoped. | primary=TMLR (rolling); backup1=ICLR 2027; backup2=AISTATS 2027 | Author OpenReview/COI/ethics confirmations and the external CUDA-host GPU-container receipt must still be recorded before TMLR upload; official ICLR 2027 CFP/Author Guide observation remains the backup-venue blocker. |
+| Submission and reproducibility state | external_blocked | Local TMLR and ICLR-style manuscript packets, OpenReview paste packets, anonymous archive, source snapshot, locked final-test, full-CIFAR BN policy ablations, saved-artifact reruns, and the TinyCNN architecture-generality cell are ready; remaining blockers are author OpenReview profile/COI/ethics/LLM confirmations, formal external plagiarism screening, and public release/CI/GPU receipts (all external/author actions). | venue=TMLR (rolling); submission_handoff_ready=True; iclr_submission_ready=False; top_conference_release_ready=False | iclr_2027_official_cfp_not_observed, iclr_2027_official_author_guide_not_observed, iclr_openreview_author_profile_and_coi_not_recorded, iclr_openreview_submission_receipt_not_observed, iclr_code_of_ethics_author_acknowledgement_not_recorded, llm_usage_disclosure_author_confirmation_not_recorded, public_release_upload_not_verified, public_repository_state_not_verified, external_ci_run_not_observed, external_gpu_container_run_not_observed, formal_external_plagiarism_database_screen_not_performed, public_release_upload_not_verified, public_repository_state_not_verified, external_ci_run_not_observed, external_gpu_container_run_not_observed |
+
+## Findings
+
+- none
+
+This file is generated by `scripts/build_proposal_to_artifact_audit.py`.

@@ -1,0 +1,928 @@
+\documentclass{article}
+
+\newif\iflotteryneurips
+\ifdefined\LOTTERYNEURIPS
+  \lotteryneuripstrue
+\else
+  \lotteryneuripsfalse
+\fi
+
+\newif\iflotteryiclr
+\ifdefined\LOTTERYICLR
+  \lotteryiclrtrue
+\else
+  \lotteryiclrfalse
+\fi
+
+\iflotteryneurips
+  \PassOptionsToPackage{numbers,compress}{natbib}
+  \usepackage[main]{neurips_2026}
+\else
+  \iflotteryiclr
+    \usepackage{times}
+    \usepackage{iclr2026_conference}
+  \else
+    \usepackage[margin=1in]{geometry}
+    \usepackage[numbers]{natbib}
+  \fi
+\fi
+
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\newtheorem{proposition}{Proposition}
+
+\newif\iflotteryincludeappendix
+\ifdefined\LOTTERYMAINONLY
+  \lotteryincludeappendixfalse
+\else
+  \lotteryincludeappendixtrue
+\fi
+
+\iflotteryincludeappendix
+  \newcommand{\cifarmovementappendixref}{Appendix Table~\ref{tab:cifar-movement-stats}}
+\else
+  \newcommand{\cifarmovementappendixref}{the supplemental generated movement table}
+\fi
+
+\title{Winning Tickets Are Not Posterior Modes:\\
+Evidence from Posterior Support and Magnitude Controls}
+
+\author{Anonymous}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+The lottery ticket hypothesis suggests that dense neural networks contain sparse
+subnetworks that can be trained in isolation when rewound to their original
+initialization. A tempting Bayesian interpretation is that these tickets
+correspond to posterior modes, or to posterior-basin supports. We turn this
+interpretation into a pre-specified, falsifiable test: posterior-induced masks
+must match IMP tickets better than local magnitude, dense-trajectory, and
+pruning-process controls, not merely better than uniform random masks. Across
+five-seed MNIST and Fashion-MNIST sparsity sweeps and a CIFAR-10 ResNet-20
+epoch-1 rewind setting, twelve posterior approximations---SGLD, SGHMC, cyclical
+SGLD, SWAG, the Laplace family up to joint-group full covariance, and subspace
+HMC---fail this stronger criterion. Posterior supports often beat random masks,
+but they remain tied to chain-start magnitude, dominated by dense magnitude, or
+closer to rewind controls than to IMP. Support-equivalence is graded rather than
+binary: only a rank-128 Hessian-plus-diagonal Laplace crosses the mask-overlap
+threshold, and even it fails the layer-sparsity and basin-count gates, so a
+posterior account survives on one axis at one fidelity. We then give a positive
+account of what winning tickets are: trajectory and pruning-process objects.
+Dense-trajectory magnitude explains most of the fixed-mask training gap and a
+process-selected IMP-only residual explains the rest, with an extensive battery
+of process controls failing to substitute for it. This account is consistent
+with axial-subspace views of IMP and inconsistent with a posterior-mode view.
+Exact dense full-network full-covariance CIFAR posterior baselines remain an
+open limitation.
+\end{abstract}
+
+\section{Introduction}
+
+The lottery ticket hypothesis (LTH) states that a dense randomly initialized
+network contains sparse subnetworks that can be trained to match the dense
+network when reset to their original initialization \citep{frankle2019lottery}.
+This result raises a basic question about the object discovered by iterative
+magnitude pruning (IMP): is a winning ticket a combinatorial artifact of the
+optimization trajectory, or does it reflect a deeper probabilistic structure of
+the posterior over weights?
+
+A Bayesian reading is attractive. SGD and its noisy variants have long been
+connected to approximate Bayesian inference \citep{welling2011sgld,
+mandt2017sgd}. Bayesian deep learning further emphasizes that useful neural
+network solutions are distributed across broad posterior regions rather than
+isolated points \citep{wilson2020bayesian, izmailov2021posteriors}. If winning
+tickets correspond to posterior modes or posterior-basin supports, LTH would be
+evidence for a selection view of learning: pruning would reveal posterior
+structure already present in the trained model.
+
+This paper tests that interpretation directly. We ask:
+
+\begin{quote}
+Do posterior samples or posterior basins induce sparse supports that explain IMP
+winning-ticket masks beyond dense magnitude, initialization magnitude, rewind
+magnitude, chain-start magnitude, and pruning-process controls?
+\end{quote}
+
+The paper makes three first-class contributions.
+\textbf{(i) A controlled negative empirical result.} We state the
+posterior-mode explanation as a \emph{pre-specified}, falsifiable
+support-equivalence claim---posterior-induced supports must beat local
+magnitude controls, not just random masks, and mode/ticket distributions must
+match in mask and function space---with the operational gates fixed before
+the posterior runs. The gates are then evaluated across repeated
+MNIST/Fashion-MNIST sweeps and twelve CIFAR-10 ResNet-20 posterior
+approximations (stochastic samplers, Laplace variants, SWAG, subspace HMC,
+and direct mode/ticket probes), with a locked final-test confirmation that
+matches three pre-registered numerical predictions. Support-equivalence is
+\emph{graded} rather than binary: a single rank-128 Hessian-plus-diagonal
+Laplace passes the mask-overlap axis while still failing the layer-sparsity
+and basin-count axes.
+\textbf{(ii) A positive trajectory and pruning-process account.} IMP
+tickets are explained by dense-trajectory magnitude plus a process-selected
+IMP-only residual rather than posterior-mode supports.
+Proposition~\ref{prop:topk} formalizes why high-SNR posterior TopK masks must
+track the chain-start magnitude support.
+\textbf{(iii) A reusable posterior-vs-IMP audit framework.} The operational
+support-equivalence gate, the twelve-approximation harness, the
+pre-registered locked-test protocol, and the surrounding audit suite are
+released as a reusable testbed so other posterior families can be tested
+against IMP tickets under the same operational contract. The release adds
+a standing open-challenge protocol: third parties may submit any posterior
+construction---including multimodal families we could not exhaust---and we
+commit to re-running the unmodified gate and registering the outcome.
+
+The conclusion is negative but scoped. Posterior masks beat random masks, but
+they track the magnitude support of the dense checkpoint or the chain start.
+When chains move, they move away from the chain start without moving toward the
+IMP ticket. When function-space CKA is high, mask-distribution and basin-count
+criteria still fail. When process controls are added, the strongest positive
+signal is the IMP-selected residual, not a posterior-mode support. The cost is
+quantitative: treating IMP tickets as posterior modes underperforms IMP by 2.3
+percentage points on the locked full-data CIFAR-10 ResNet-20 row (posterior
+0.872 versus IMP 0.895) and by 5.3 percentage points on the non-residual
+TinyCNN at matched sparsity (posterior 0.738 versus IMP 0.791), a direct
+accuracy loss for posterior-based pruning pipelines.
+
+\section{Related Work}
+\label{sec:related}
+
+\paragraph{Lottery tickets and pruning.}
+LTH was introduced by \citet{frankle2019lottery}. Follow-up work connected LTH
+to rewinding and linear mode connectivity \citep{frankle2020linear}. Random
+weighted networks with learned masks further emphasized the selection view of
+learning \citep{ramanujan2020hidden}. Single-shot pruning methods such as SNIP
+\citep{lee2019snip} and SynFlow \citep{tanaka2020synflow} provide important
+non-Bayesian controls.
+
+\paragraph{Mode connectivity and subspaces.}
+Low-loss connectivity between neural network solutions challenges the view that
+trained models are isolated modes \citep{garipov2018loss, draxler2018barriers}.
+For lottery tickets specifically, \citet{paul2023unmasking} argue that IMP
+masks encode axial subspaces that intersect matching linearly connected regions,
+which is a direct non-Bayesian competitor to a posterior-mode explanation.
+Permutation symmetries and re-basin methods further complicate parameter-space
+mode counting \citep{entezari2022role, ainsworth2023git}. Our experiments
+therefore include function-space clustering and linear barrier probes in
+addition to mask overlap. A central aim of this paper is to adjudicate between
+these two competitors directly: the posterior-mode reading and the
+axial-subspace/trajectory reading make opposite predictions about whether
+posterior-induced supports beat trajectory and pruning-process controls, and
+the operational gates below are designed to separate them.
+
+\paragraph{Bayesian neural networks.}
+SGLD provides a simple route from SGD to approximate posterior sampling
+\citep{welling2011sgld}. SGD itself can be interpreted as approximate Bayesian
+inference in a stationary regime \citep{mandt2017sgd}. Practical posterior
+approximations such as SWAG \citep{maddox2019swag} and exact small-model
+sampling studies \citep{izmailov2021posteriors} show that posterior geometry is
+structured and nontrivial. PAC-Bayesian and Bayesian LTH analyses
+\citep{sakamoto2022pacbayes, kuhn2026bayesian} motivate the need for controls:
+Bayesian language alone does not imply that IMP masks are posterior-mode
+supports. Notably, \citet{kuhn2026bayesian} report that Bayesian-LTH pruning
+``should rely primarily on magnitude, secondly on standard deviation''---an
+independent finding already pointing toward the magnitude tracking our gates
+make operational.
+
+\paragraph{Bayesian and learned-mask pruning.}
+A separate line of work \emph{optimizes} posterior-like mask distributions as
+training objectives: variational dropout \citep{molchanov2017variational},
+hard-concrete $L_0$ gates \citep{louizos2018l0}, and non-vacuous PAC-Bayes
+compression bounds \citep{dziugaite2017nonvacuous}. These answer a design
+question---can a posterior-shaped objective produce a good sparse
+network---whereas we test a structural claim: whether the posterior of a
+\emph{standard} run already contains the IMP ticket as a mode-level support.
+Our learned-mask baselines (Section~\ref{sec:trajectory-process}) include
+variational and hard-concrete $L_0$ rows precisely so the two questions are
+not conflated.
+
+Our contribution is therefore not a new posterior approximation or a claim that
+Bayesian inference is uninformative for pruning. It is a controlled
+support-equivalence test: if posterior modes explain winning tickets, their
+sparse supports should match IMP tickets after conditioning on dense magnitude,
+rewind magnitude, trajectory magnitude, and pruning-process alternatives.
+
+\section{Operational Test}
+\label{sec:operational-test}
+
+Let $m_{\mathrm{IMP}}$ denote the mask found by IMP at a fixed sparsity. For a
+posterior sample $\theta^{(s)}$, the simplest posterior-induced mask is
+\[
+  m^{(s)} = \mathrm{TopK}(|\theta^{(s)}|),
+\]
+with the same number of kept weights as $m_{\mathrm{IMP}}$. We also construct
+aggregate posterior masks from posterior mean, RMS, signal-to-noise ratio, high
+variance, and low variance.
+
+We compare all masks by support Jaccard similarity to $m_{\mathrm{IMP}}$:
+\[
+  J(m, m_{\mathrm{IMP}}) =
+  \frac{|m \cap m_{\mathrm{IMP}}|}{|m \cup m_{\mathrm{IMP}}|}.
+\]
+
+The key controls are random same-sparsity masks, initialization magnitude
+masks, dense trained magnitude masks, rewind magnitude masks, chain-start
+magnitude masks for posterior chains, SNIP/SynFlow masks, fixed-mask retraining
+controls, channel-aligned direct mode/ticket controls, and process-residual
+interventions. The positive posterior-mode interpretation must satisfy a
+stronger condition than beating random: posterior masks must explain IMP beyond
+the chain-start, dense, rewind, trajectory, and process controls, and posterior
+samples must move support in a way that increases IMP alignment.
+
+\paragraph{Strong and weak forms of the hypothesis.}
+To avoid testing a strawman we separate two readings of ``winning tickets
+are posterior modes.'' The \emph{strong} form (SPMH)---posterior-induced
+support distributions coincide with the IMP ticket distribution in mask,
+layer sparsity, and basin structure jointly---is already untenable at high
+SNR by Proposition~\ref{prop:topk}, and rejecting it alone would be
+trivial. The \emph{weak} form (WPMH), the substantive target of every gate
+below, asserts only that posterior supports explain IMP tickets
+\emph{beyond} the local magnitude, trajectory, and pruning-process controls
+above. WPMH is the operational content of selection-view readings
+\citep{ramanujan2020hidden, wilson2020bayesian}: a posterior support that
+``reveals structure already present in the trained model'' must at minimum
+carry ticket information the chain-start magnitude support does not.
+
+\paragraph{Why posterior TopK masks track the chain start.}
+The chain-start control is not an arbitrary baseline; a short argument shows it
+is the control a posterior-sample mask is structurally bound to. Model the
+per-coordinate posterior as $\theta^{(s)}_i \sim \mathcal{N}(\mu_i,
+\sigma_i^2)$, where $\mu$ is the posterior mean---in practice the chain start or
+MAP estimate---and define the coordinate signal-to-noise ratio $r_i =
+|\mu_i|/\sigma_i$.
+
+\begin{proposition}[High-SNR posterior TopK masks track the chain start]
+\label{prop:topk}
+For any two coordinates with $|\mu_i| > |\mu_j|$,
+$\Pr\!\left[\,|\theta^{(s)}_i| > |\theta^{(s)}_j|\,\right] \to 1$ as
+$\min(r_i, r_j) \to \infty$. Consequently $\mathrm{TopK}(|\theta^{(s)}|) \to
+\mathrm{TopK}(|\mu|)$, the chain-start magnitude mask, and a posterior-sample
+mask cannot beat the chain-start control in the high-SNR limit.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+Write $|\theta^{(s)}_i| = |\mu_i|\,\bigl|1 + Z_i/r_i\bigr|$ with $Z_i \sim
+\mathcal{N}(0,1)$. As $r_i \to \infty$, $Z_i/r_i \to 0$ in probability, so
+$|\theta^{(s)}_i|/|\mu_i| \to 1$. For coordinates with a fixed magnitude gap
+the ordering is therefore preserved with probability tending to one; the only
+coordinates that can flip across the $\mathrm{TopK}$ threshold are those whose
+mean magnitudes straddle that threshold within $O(\sigma)$, so the expected
+Jaccard of $\mathrm{TopK}(|\theta^{(s)}|)$ with $\mathrm{TopK}(|\mu|)$ is
+governed by the SNR of the boundary coordinates alone.
+\end{proof}
+
+\paragraph{A finite-sample form, verified on saved states.}
+Let $\tau$ be the $K$-th largest $|\mu_i|$ and $\rho_i = \bigl||\mu_i| -
+\tau\bigr|/\sigma_i$ the boundary SNR. Each coordinate swapped into
+$\mathrm{TopK}(|\theta^{(s)}|)$ displaces a kept one, and at the cut $\tau$
+every swap forces an excluded coordinate above $\tau$ or a kept one below
+it, so $\mathbb{E}[D] \le B(\tau) = \sum_{\mathrm{kept}} \bar{Q}(\rho_i) +
+2\sum_{\mathrm{excl.}} \bar{Q}(\rho_j)$ ($\bar{Q}$ the normal upper tail).
+Both masks keep $K$ coordinates, so $J = (K-D)/(K+D)$ is convex in $D$ and
+Jensen gives $\mathbb{E}[J] \ge (K - B(\tau))/(K + B(\tau))$, recovering
+Proposition~\ref{prop:topk} as $\min_i \rho_i \to \infty$. A generated
+audit fits the surrogate $(\hat\mu, \hat\sigma)$ to the ten saved SGLD
+samples per seed: per-seed lower bounds 0.667--0.673 against observed
+Jaccard means 0.881--0.884, holding in 5/5 seeds (a surrogate-based
+prediction, not a theorem about SGLD itself).
+
+Proposition~\ref{prop:topk} predicts the regime we observe. Trained weights are
+high-SNR for the bulk of their large-magnitude coordinates, so the
+posterior-sample TopK mask is forced to coincide with the chain-start mask
+except at the keep/prune boundary---exactly the measured pattern in
+Section~\ref{sec:posterior-fails}, where posterior-to-chain overlap stays near
+0.91--0.98 and the posterior-minus-chain gap is indistinguishable from zero. It
+also sharpens the burden of proof: a posterior account can differ from the
+chain start only at low-SNR boundary coordinates, the regime where its own
+samples are noisiest.
+
+\paragraph{Why rank-bounded posteriors should struggle (informal).}\label{prop:rankcov}
+Proposition~\ref{prop:topk} bounds marginal coordinate-level disagreement,
+but the gate also tests \emph{joint} mask structure. A local Gaussian
+posterior $q = \mathcal{N}(\theta,\, U U^\top + D)$ with low-rank factor
+$U \in \mathbb{R}^{p\times k}$ only induces order-$k+1$ Gaussian latent
+dependencies among the boundary coordinates, whereas an $R$-round
+deterministic IMP process layers an additional pairwise survival dependence
+on the boundary set at every round, accumulating high-order
+coordinate-coordinate dependencies that are not Gaussian-latent. The
+informal expectation is therefore that increasing the covariance rank of a
+single Gaussian family closes the marginal-tracking axis first and the
+joint-distribution axes only with much larger rank. We do not formalise
+this as a theorem---a clean total-variation separation would require a
+quantitative coupling argument on the TopK boundary set---and treat the
+locked-budget covariance sweep below as \emph{empirical} evidence
+consistent with this intuition, not as a verification of a formal
+separation.
+
+The locked-budget covariance sweep matches this expectation. Of all
+rank-$k$ Gaussian Laplace rows tested (rank 16/32/64/128 plus joint-group
+22{,}064--270{,}896-weight exact rows), only the rank-128 row crosses any
+mask-overlap threshold while the layer-sparsity and basin-count axes still
+fail, and the exact 270{,}896-weight joint-group row returns to Hamming
+overlap 0.000: rank moves the joint mask distribution along only one of
+three gate axes.
+
+\paragraph{Validation-derived locked-test predictions.}
+The validation-selected row implies three quantitative pre-test predictions
+under Proposition~\ref{prop:topk}: (P1) posterior-sample accuracy within
+$\pm 0.005$ of the validation value 0.874; (P2) layer-sparsity KS rejection
+$p < 0.01$; (P3) posterior-versus-IMP Hamming overlap below 0.05. The
+single-shot locked test on the held-out test split returned, respectively,
+0.872, $p = 0$ to four decimals, and 0.0000---all three derivable predictions
+confirmed at the same 4/6 threshold-pass count as the validation row. The
+operational gates themselves (the proposal thresholds in
+\texttt{scripts/run\_mode\_ticket\_distribution\_probe.py}) were fixed in
+code before any CIFAR run; P1--P3 are derived from validation numbers, not
+externally pre-registered, and are reported as a transparency check rather
+than a registered protocol.
+
+\section{The Posterior-Mode Account Fails the Gates}
+\label{sec:posterior-fails}
+
+\paragraph{Mask-overlap metric, made precise.}
+Throughout this section, the ``Hamming overlap'' threshold reports the
+empirical overlap of two pairwise-distance histograms---one over posterior
+mask pairs and one over IMP ticket pairs---rather than the direct
+posterior-to-ticket nearest-pair distance. Two mask sets whose internal
+diversity profiles agree can therefore clear the 0.7 threshold even when
+their cross-set Hamming distance is large. We report the cross-set Hamming
+mean (``\texttt{cross\_mean}'') in every \texttt{metrics.json} alongside
+the histogram overlap to keep the two semantics distinguishable; the
+headline gate, as the proposal stipulates, is the distribution-equivalence
+one, and sections interpreting a Hamming-overlap pass additionally rely on
+the cross-set distance and layer-sparsity KS axes.
+
+\subsection{Random Is Too Weak a Baseline}
+
+Table~\ref{tab:gate1} shows the current Gate1 sparsity sweeps. Each row
+aggregates five seeds, three independent dense-start SGLD chains per seed, and
+posterior masks at the matched IMP sparsity.
+
+\begin{table}[ht]
+\centering
+\caption{MNIST and Fashion-MNIST 5-seed Gate1 sparsity sweeps. Posterior masks
+beat random but fail against stronger controls at every sparsity. ``Post-Chain''
+is the Jaccard overlap between posterior masks and their chain-start magnitude
+masks. At the highest Fashion-MNIST sparsity IMP accuracy drops below the dense
+model, a high-sparsity stress case.}
+\label{tab:gate1}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrrrrrr}
+\toprule
+Dataset & Config & Runs & Sparsity & Posterior & Random & Chain Start & Post-Chain & Dense Mag & Gate1 \\
+\midrule
+MNIST & r2 p0.30 & 5 & 0.5100 & 0.3539 & 0.3246 & 0.3537 & 0.9303 & 0.8259 & Fail \\
+MNIST & r3 p0.30 & 5 & 0.6570 & 0.2669 & 0.2071 & 0.2670 & 0.9115 & 0.7258 & Fail \\
+MNIST & r5 p0.30 & 5 & 0.8319 & 0.2373 & 0.0918 & 0.2385 & 0.9298 & 0.5924 & Fail \\
+MNIST & r8 p0.30 & 5 & 0.9424 & 0.1275 & 0.0298 & 0.1275 & 0.9423 & 0.4028 & Fail \\
+Fashion & r2 p0.30 & 5 & 0.5100 & 0.3516 & 0.3246 & 0.3516 & 0.9314 & 0.7385 & Fail \\
+Fashion & r3 p0.30 & 5 & 0.6570 & 0.2595 & 0.2070 & 0.2594 & 0.9160 & 0.6378 & Fail \\
+Fashion & r5 p0.30 & 5 & 0.8319 & 0.2114 & 0.0917 & 0.2122 & 0.9212 & 0.5255 & Fail \\
+Fashion & r8 p0.30 & 5 & 0.9424 & 0.1300 & 0.0297 & 0.1300 & 0.9408 & 0.3813 & Fail \\
+\bottomrule
+\end{tabular}
+}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.72\textwidth]{figures/gate1_controls.pdf}
+\caption{Gate1 control comparison on MNIST and Fashion-MNIST. Posterior masks
+beat random masks, but they track chain-start magnitude and remain far below
+dense magnitude across sparsities.}
+\label{fig:gate1-controls}
+\end{figure}
+
+Posterior masks beat random support at every tested MNIST/Fashion-MNIST
+sparsity, but the random gap is explained by chain-start magnitude. On MNIST
+and Fashion-MNIST, posterior-minus-chain-start gaps stay near zero while
+posterior-to-chain-start overlap remains around 0.91--0.94. ``Near zero''
+is equivalence-tested, not merely non-significant: a TOST reanalysis over
+seed-level gaps bounds the gap within $\pm 0.005$ Jaccard on all eight
+Gate1 rows. Dense magnitude is
+much closer to IMP, with dense-minus-posterior gaps of 0.275--0.472 on MNIST
+and 0.251--0.387 on Fashion-MNIST. The same pattern holds in the generated
+mode-distribution audit: posterior supports beat uniform random masks in 58 of
+59 grouped comparisons, but none of the 59 posterior-versus-chain-start
+comparisons beats the matched chain-start support by more than 0.005 Jaccard:
+43 are practically tied to the control, 15 favor chain-start magnitude, and one
+is mixed. Rewind magnitude is closer to the IMP ticket than posterior support in
+55 of 57 grouped comparisons.
+
+\subsection{Sampler Movement Does Not Point Toward Tickets}
+
+The CIFAR-10 ResNet-20 evidence tests whether the MNIST/Fashion failure is an
+artifact of small models or weak image baselines. In the long-budget epoch-1
+rewind row, dense accuracy is about 88.5\% and IMP reaches about 89.8\% at
+83.2\% sparsity, yet SGLD, SGHMC, cyclical SGLD, SWAG, diagonal Laplace,
+KFAC-style Laplace, low-rank Hessian-plus-diagonal Laplace, and subspace HMC
+all fail the same control. Increasing sampler scale often lowers
+posterior-to-chain-start overlap, but posterior-to-IMP overlap does not improve
+and the epoch-1 rewind support remains closer to IMP.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.72\textwidth]{figures/cifar_movement.pdf}
+\caption{CIFAR-10 ResNet-20 epoch-1 rewind movement diagnostics. Across SGLD,
+SGHMC, cyclical SGLD, full-network SWAG, diagonal Laplace, KFAC-style Laplace,
+and low-rank Hessian-plus-diagonal Laplace, moving support away from the chain
+start does not increase overlap with the IMP mask.}
+\label{fig:cifar-movement}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{llrrrrrr}
+\toprule
+Sampler & LR/Scale/Step & Dense & IMP & Post. & Chain & Post-chain & Rewind \\
+\midrule
+SGLD & $10^{-6}$ & 0.8845 & 0.8993 & 0.1425 & 0.1441 & 0.7362 & 0.1784 \\
+SGLD & $3{\times}10^{-6}$ & 0.8845 & 0.8993 & 0.1381 & 0.1441 & 0.5928 & 0.1784 \\
+cSGLD & $10^{-6}$ & 0.8852 & 0.8960 & 0.1422 & 0.1454 & 0.7046 & 0.1789 \\
+DiagLap & $10^{-3}$ & 0.8849 & 0.8980 & 0.1447 & 0.1469 & 0.8826 & 0.1787 \\
+DiagLap & $10^{-2}$ & 0.8849 & 0.8980 & 0.1278 & 0.1469 & 0.5961 & 0.1787 \\
+KFACLap & $10^{-2}$ & 0.8860 & 0.8956 & 0.1303 & 0.1456 & 0.4859 & 0.1775 \\
+LowRank32Lap & $10^{-2}$ & 0.8853 & 0.8964 & 0.1358 & 0.1457 & 0.7402 & 0.1795 \\
+LowRank64Lap & $10^{-2}$ & 0.8874 & 0.8954 & 0.1339 & 0.1433 & 0.7397 & 0.1766 \\
+LowRank128Lap & $10^{-2}$ & 0.8867 & 0.8967 & 0.1351 & 0.1453 & 0.7358 & 0.1780 \\
+SWAG20 & $64$ & 0.8859 & 0.8973 & 0.1453 & 0.1455 & 0.9086 & 0.1782 \\
+RandSubHMC & $3{\times}10^{-3}$ & 0.8866 & 0.8965 & 0.1440 & 0.1440 & 0.9766 & 0.1779 \\
+TrajSubHMC & $10^{-3}$ & 0.8849 & 0.8961 & 0.2290 & 0.2292 & 0.9915 & 0.1792 \\
+Hess16SubHMC & $3{\times}10^{-4}$ & 0.8873 & 0.8974 & 0.1468 & 0.1468 & 0.9994 & 0.1799 \\
+Hess32SubHMC & $3{\times}10^{-4}$ & 0.8868 & 0.8973 & 0.1461 & 0.1461 & 0.9993 & 0.1788 \\
+\bottomrule
+\end{tabular}
+\caption{Representative five-seed CIFAR-10 ResNet-20 epoch-1 rewind movement
+diagnostics at r5 p0.30. Posterior support either remains near the chain-start
+magnitude support or moves away from it, but posterior-to-IMP overlap (Post.)
+does not exceed the matching chain-start control. TrajSubHMC is higher because
+its chain-start control is the matched dense trajectory magnitude support; the
+full generated movement summary is in \cifarmovementappendixref.}
+\label{tab:cifar-long-movement}
+\end{table}
+
+The negative movement result is broad: the sampler grid spans dense-start and
+independent-start multi-chain SGLD and SGHMC, cyclical SGLD, a 20-snapshot SWAG
+row, diagonal and KFAC-style Laplace, rank-16/32/64/128 low-rank Laplace, exact
+head and selected/tensor-block/joint-group full-covariance Laplace, and
+low-dimensional HMC in random, trajectory, and top-Hessian subspaces. Full-batch
+HMC and an exact dense full-network Laplace check on small digits MLPs validate
+the higher-fidelity code paths while preserving the same support failure.
+
+\subsection{Richer Covariance Still Fails the Support Gate}
+
+The covariance objection is the strongest bounded limitation, so we push exact
+covariance as far as the workstation budget permits, across five exact
+block-diagonal and joint-group rows covering 22,064, 68,144, 68,144, 86,576,
+and 270,896 trainable weights. Every row tells the same story. Sample accuracy
+stays near 88\%, and global posterior-to-chain-start support falls as fidelity
+grows (from 0.8287 at the 22,064-parameter row down to 0.7148--0.7863), so the
+posterior does move. But it does not move toward tickets: the selected-block
+posterior-minus-chain gain stays at or below zero (between $-0.0114$ and
+$+0.0036$), and the rewind control remains closer to IMP by 0.029--0.036
+throughout. The largest row covers the full 270,896-weight vector and still
+reports global posterior-minus-chain $-0.0019$. These rows remove the practical
+weight-tensor coverage objection, while literal dense CIFAR full-network
+covariance remains outside budget: a single float64 dense matrix would require
+553.1 GiB, and matrix plus Cholesky would require 1,106.3 GiB. Per-row numbers
+are in the claim ledger.
+
+\subsection{Function Space Agreement Is Not Mask Equivalence}
+
+We also make the original proposal's distributional criterion explicit. On
+digits, posterior sample masks fail two of the four stated thresholds:
+layer-sparsity KS has $p=0.0788$ and pairwise mask-Hamming overlap is 0.631,
+while logit CKA passes. Mean-shift clustering in raw parameter PCA collapses
+posterior samples to one representative mode; the raw-parameter basin entropy is
+0.0 nats with effective cluster count 1.0. The full-data CIFAR-10 ResNet-20
+strengthens this separation: posterior samples can keep logit/final-hidden
+activation CKA above 0.93/0.91 while failing layer-sparsity, Hamming, or
+posterior-basin-count criteria.
+
+Channel alignment does not change this conclusion: activation-channel and
+weight-correlation alignment both still fail layer KS and Hamming while
+retaining high activation CKA; a block-coordinate ResNet channel audit leaves
+global-channel posterior/ticket Hamming near 0.21 rather than ticket-like
+agreement; and an exact stage-1 enumeration validates the local solver on a
+small ResNet subgraph while exhaustive full-data graph isomorphism remains
+infeasible. A permutation-\emph{invariant} metric closes this objection
+without enumerating permutations: per-tensor entropic Gromov--Wasserstein
+distances over channel graphs are relabeling-invariant by construction, and
+independent per-tensor couplings are a relaxation strictly more favorable
+to the posterior than any valid network symmetry. On the saved full-data
+SGLD artifact the metric is validated (a genuine producer/consumer channel
+permutation stays at the self-distance floor despite large coordinate
+Hamming distance), yet posterior samples stay at cross-seed
+ticket-diversity distance from their own-seed ticket in 5/5 seeds
+(0.96--1.06$\times$ the cross-ticket mean): relabeling moves posterior
+masks no closer to the ticket at all.
+
+The multi-chain and high-fidelity direct rows address the concern that a single
+local chain was too weak. A dense-start direct probe with 75 cyclical-SGLD
+posterior samples fails layer KS and Hamming while maintaining high CKA; an
+independent-start version with 15 dense chain starts and 75 samples does the
+same. A streamed exact joint-group direct probe over all 270,896 weight
+parameters closes the full-weight Gaussian gap: 25 joint-group posterior
+samples keep sample accuracy at 88.3\%, posterior-to-chain-start Hamming is
+0.0503, layer-sparsity KS is $p=1.1{\times}10^{-8}$, Hamming overlap is 0.000,
+logit/final-hidden activation CKA remains 0.937/0.920, and all 25 joint-group
+samples still collapse to one parameter-PCA basin.
+
+\paragraph{Exploratory robustness: non-residual architecture (seed-level cell).}
+A reviewer could attribute the failure to residual architecture. We treat
+this cell as an \emph{exploratory robustness cell} rather than a
+confirmatory row: it evaluates on the test split directly and bounds the
+architecture axis only; the dataset axis is handled by the
+validation-selected CIFAR-100 locked test below.
+We run the seed-level part of the matched probe on a non-residual
+three-convolution TinyCNN (no skip connections, no global average pooling;
+we retain BatchNorm so this is a non-residual---but not BN-free---robustness
+point) at the same five-round $p{=}0.30$ schedule and 0.832 sparsity. We report
+\emph{only} the per-seed direction checks and the
+posterior-to-chain-start Hamming for this cell; the joint-distribution gate
+axes (posterior-versus-IMP Hamming, layer-sparsity KS, function-space CKA)
+were not computed because the activation-CKA stage stalls on TinyCNN's wide
+$4096$-dimensional pre-classifier feature. The seed-level direction is
+unchanged: IMP beats the dense chain start in 5/5 seeds (0.791 versus 0.781);
+SGLD posterior samples stay below both the dense chain start and the IMP
+ticket in 5/5 seeds (0.738); and posterior TopK masks again track the chain
+start with posterior-to-chain-start Hamming 0.061 (95\% CI $[0.060,0.062]$)
+across seeds; the joint-distribution axes for a non-residual architecture
+remain an open robustness item.
+
+\paragraph{Dataset robustness: CIFAR-100 with a validation-selected locked test.}
+The dataset axis is tested at two levels on CIFAR-100 ResNet-20-w16 at the
+same $p{=}0.30$ schedule and 0.832 sparsity. First, an exploratory
+five-seed direct probe on the full training set (test-split evaluation):
+the seed-level direction holds (IMP beats dense 5/5 at 0.636 versus 0.629,
+posterior samples below both 5/5 at 0.617); on this harder task IMP
+supports coincide with dense magnitude (chain-versus-tickets Hamming
+overlap 1.000), so posterior masks clear the Hamming-overlap axis (0.816)
+while still failing layer-sparsity KS ($p = 1.3\times10^{-6}$) and
+activation CKA---4/6, as the rank-bounded intuition (§\ref{prop:rankcov})
+predicts. Second, the CIFAR-10 validation/locked-test protocol: a held-out
+10\% validation split selected the row and a single locked final-test
+rerun reproduced it exactly (layer KS $p = 9.0\times10^{-8}$, Hamming
+overlap 0.000, logit CKA 0.884, 3/6; IMP beats dense 5/5 at 0.620 versus
+0.596, posterior 5/5 below both at 0.584---a 3.6-point gap to IMP). Under
+proper split separation IMP no longer collapses onto dense magnitude and
+the Hamming axis fails again, so the locked CIFAR-100 result is
+\emph{stronger} than the exploratory probe suggested.
+
+\paragraph{Support-equivalence is graded, not binary.}
+The criterion behaves as a graded property in covariance fidelity rather than a
+single pass/fail switch. Of every posterior approximation tested, exactly
+one---the rank-128 Hessian-plus-diagonal Laplace direct probe---crosses any
+gate axis: its 50 posterior samples pass the Hamming-overlap threshold (0.816)
+with high logit/final-hidden activation CKA (0.932/0.910), but still fail the
+layer-sparsity KS threshold ($p=2.0{\times}10^{-6}$) and collapse to one
+parameter-PCA basin. The pass is replicable, not single-run noise: an
+independent five-seed group (seeds 5--9) under the identical protocol
+reproduces the full profile (Hamming overlap 0.749, layer KS
+$p=1.5{\times}10^{-6}$, one basin, same 5/6 axes). Neighbouring fidelities
+bracket it: rank-32/64 movement rows do not cross the mask-overlap
+threshold and the exact 270,896-weight joint-group row returns to Hamming
+overlap 0.000. A posterior account therefore has reproducible traction in
+exactly one narrow band---one family, one rank, one of three gate
+axes---reported as a partial-equivalence regime, not as support for the
+hypothesis: a replicated single-axis pass is still not the distributional
+mask/basin equivalence the hypothesis requires.
+
+The layer-sparsity KS values in these direct rows are descriptive diagnostics
+over correlated posterior samples, not independent sample-level significance
+tests. The saved full-data SGLD artifact permits a seed-level paired
+reconstruction: posterior samples are farther from the same-seed IMP ticket
+than the chain-start support in 5/5 raw seeds and 5/5 activation-aligned
+seeds, and an independent seeds 5--9 extension run with saved masks
+reproduces the direction in 5/5 further seeds---10/10 across both groups,
+two-sided sign $p = 0.002$. The cyclical-SGLD multichain, rank-128
+low-rank Laplace, and joint-group Laplace direct rows also write per-seed
+\texttt{mask\_artifacts.npz} for the same on-demand paired audit;
+pooled-sample KS p-values for them remain descriptive diagnostics.
+
+\section{What Winning Tickets Are: A Trajectory and Process Account}
+\label{sec:trajectory-process}
+
+The posterior-mode account fails the gates, but a winning ticket still demands
+a positive explanation. We give one: a winning ticket is a \emph{trajectory and
+pruning-process object}, with a trajectory-magnitude component that any dense
+run exposes and a process-selected IMP-only residual that only iterative
+pruning produces. Neither part is recovered by posterior structure.
+
+Dense trajectory magnitude is the first part, and it is useful: in the matched
+CIFAR dense-trajectory probe, trajectory magnitude supports are closer to IMP
+than posterior supports, and fixed-mask training shows that final dense,
+epoch-10, and RMS trajectory masks are much better than random. They are still
+below IMP, so the remaining question is what IMP adds.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.70\textwidth]{figures/cifar_trajectory.pdf}
+\caption{CIFAR-10 ResNet-20 dense-trajectory controls. Magnitude supports along
+the matched dense trajectory, especially around epochs 10--30, and the best
+aggregate trajectory magnitude score are closer to the IMP mask than any global
+posterior support in the movement diagnostics.}
+\label{fig:cifar-trajectory}
+\end{figure}
+
+Residual swap and removal-order controls localize the gap to a
+process-selected IMP-only residual. Anatomy, predictor-mask, cross-seed,
+direct-transfer, base-compatibility, posterior-ordering, and stratified
+controls give the same localization. Learned mask baselines do not replace that
+residual: Gem-Miner-style, Bernoulli/Concrete variational pruning, and the
+hard-concrete L0 gate baseline are below IMP in the current CIFAR
+support/accuracy rows and do not rescue the calibration/OOD tradeoff. Their
+learned objective can change uncertainty behavior, but not into a
+ticket-support explanation.
+
+The strongest process controls test whether simpler score composition explains
+the residual. A tensor-matched excluded oracle stays below the round-selected
+IMP residual, and a tensor+score-matched oracle remains below it even after
+matching parameter tensor and within-tensor round-score deciles. Three
+residualization checks then confirm the residual is not a posterior artifact. A
+residualized round-score projection that removes base, dense-final, and
+final-IMP magnitude subspaces reduces both accuracy and oracle overlap; removing
+the diagonal-Laplace posterior score subspace (posterior RMS, standard
+deviation, and RMS-minus-dense features) leaves a 0.23-point
+round-vs-residualized accuracy gap (5/5 positive seeds, 95\% CI $[-0.03,0.48]$)
+with oracle overlap dropping 0.1923; and removing a learned trajectory/process
+subspace leaves a 0.48-point gap (5/5 seeds, 95\% CI $[0.29,0.67]$) with overlap
+dropping 0.1890. The learned process subspace captures broad directions but does
+not substitute for the particular residual coordinates IMP selects.
+
+\paragraph{Positive prediction: cross-seed mask transfer.}
+The trajectory and pruning-process account makes two falsifiable
+predictions that a posterior-mode account does not. (P+1) Same-seed IMP
+masks should be \emph{closer to within-seed IMP ground truth} than masks
+transferred from another seed, because the trajectory selects support per
+seed. (P+2) Cross-seed transferred masks should still carry
+\emph{above-random} support-prediction precision, because the
+trajectory-magnitude component is partially shared across seeds that share
+data, initialization scheme, and optimizer. Both predictions hold in the
+existing five-seed cross-seed transfer probe: same-seed (oracle) accuracy
+minus IMP is $-0.0090$ ($[-0.0111,\,-0.0068]$) while cross-seed accuracy
+minus IMP is $-0.0235$ ($[-0.0269,\,-0.0201]$), a $1.5$-point per-seed
+drop (P+1); and cross-seed added support precision is $0.2388$
+($[0.2334,\,0.2442]$), roughly twice the random-mask baseline
+$0.1264$ ($[0.1237,\,0.1292]$) at the same matched sparsity (P+2). A
+posterior-mode account would predict shared seed-invariant support and
+therefore little to no within/cross gap.
+
+\section{Discussion}
+
+These results constrain a simple Bayesian interpretation of lottery tickets.
+The posterior signal exists in a weak sense: posterior-induced masks are not
+random. But this is not enough. The same signal is already present in the dense,
+rewind, trajectory, or chain-start magnitude support. The explicit
+distribution-equivalence audit turns this into a negative result rather than a
+visual or single-metric impression: posterior support distributions separate
+from random masks, yet they are tied to or worse than local magnitude controls
+across the posterior families tested here. The evidence therefore favors a
+trajectory/magnitude subspace account plus a process-selected residual over a
+posterior-mode account.
+
+This adjudicates the two competitors of Section~\ref{sec:related} in favor of
+the axial-subspace reading. \citet{paul2023unmasking} hold that IMP masks
+encode trajectory axial subspaces, not posterior structure; the posterior-mode
+reading predicts the opposite. Our gates test that prediction and it fails:
+trajectory magnitude and the IMP residual carry the ticket signal, posterior
+supports do not, and the graded rank-128 exception passes only one axis at one
+fidelity. The evidence is consistent with the axial-subspace account and
+inconsistent with a posterior-mode account in the tested settings.
+
+This conclusion is compatible with mode-connectivity results. Independent
+solutions can occupy separated regions in parameter or function space, and yet
+the sparse supports induced by local posterior samples need not explain the IMP
+ticket. A generated linear connectivity audit makes this point concrete. On
+MNIST and Fashion-MNIST, dense-to-IMP linear barriers are nearly zero (0.0026
+and 0.0395), but posterior support remains slightly below the chain-start
+magnitude control. On CIFAR-10 ResNet-20, the long SGLD and SWAG dense-to-IMP
+barriers are large (3.0827 and 3.7402), but posterior support is still tied to
+chain-start support. Thus linear barriers are orthogonal landscape diagnostics,
+not evidence of posterior-ticket equivalence.
+
+\paragraph{Scope of the claim.}
+The claim is not that Bayesian neural-network posteriors are useless, nor that
+no posterior approximation could ever correlate with IMP coordinates. The
+confirmatory evidence in this paper is the five-seed MNIST/Fashion-MNIST
+sparsity sweeps, the CIFAR-10 ResNet-20 epoch-1-rewind direct probe across
+twelve posterior approximation configurations, and the validation-selected
+CIFAR-100 ResNet-20-w16 locked-test row; the non-residual TinyCNN
+seed-level cell is an additional robustness check under the same
+matched-sparsity schedule. The claim
+is narrower: under the posterior families and CIFAR-10/MNIST/Fashion-MNIST
+settings tested here, posterior-induced sparse supports do not satisfy the
+support-equivalence claim once dense, rewind, trajectory, and pruning-process
+controls are included. The positive evidence in the paper is the alternative
+localization: useful ticket structure is better explained by trajectory
+magnitude plus a process-selected IMP residual.
+
+\section{Limitations and Next Experiments}
+\label{sec:limitations}
+
+The evidence is broad, but the paper should still be read as a controlled
+negative result under the posterior approximations we can currently test, not
+as a theorem about all Bayesian neural-network posteriors. We also note an
+explicit multiple-comparisons exposure: every confirmatory row pools five
+seeds against four to six proposal thresholds across twelve posterior
+approximation configurations, so individual pooled p-values are descriptive
+diagnostics rather than independent significance tests. A generated
+family-wise audit quantifies the exposure over the fourteen distinct
+full-data direct configurations ($14 \times 6 = 84$ trials): all fourteen
+layer-sparsity KS rejections survive Holm--Bonferroni at $\alpha = 0.05$;
+the two single-axis Hamming-overlap passes (rank-128 and CIFAR-100) match
+the expected single-axis pass count under pooled per-axis base rates; and no
+configuration passes the full joint gate. A TOST reanalysis at the paper's
+own materiality margin ($\delta = 0.005$ Jaccard) equivalence-passes all
+eight Gate1 tracking rows, with all 35 CIFAR movement rows one-sided
+non-superior at the same margin; the four independent seed-level direction
+checks (saved-artifact SGLD seeds 0--4 and 5--9, TinyCNN, CIFAR-100)
+jointly have global-null probability $9.5 \times 10^{-7}$, and the
+headline SGLD row alone spans ten seeds (10/10, two-sided sign
+$p = 0.002$). The conclusion thus rests on
+family-wise-corrected rejections, equivalence-tested tracking, and joint
+seed-level direction, not on any single pooled p-value. The
+main remaining limitations are:
+
+\begin{itemize}
+  \item alignment robustness. Activation-channel alignment, weight-correlation
+  channel alignment, record-level post-hoc matching, a block-coordinate global
+  channel audit, and exact stage-1 enumeration are negative or bounded, but
+  exhaustive full-data graph isomorphism remains infeasible and unimplemented;
+  \item validation/test separation. The selected CIFAR-10 SGLD direct row
+  was rerun on a held-out 10\% validation split and a locked final-test
+  rerun has been completed (posterior-sample accuracy 0.872, 4/6
+  thresholds, matching the validation row); the CIFAR-100 row follows the
+  same protocol (validation-selected, locked test reproducing it at 3/6);
+  \item BatchNorm posterior policy. ResNet posterior samplers include
+  BatchNorm buffers in sampled state dictionaries under the default
+  train-buffer policy. The full CIFAR SGLD/cSGLD sweep over freeze,
+  recalibrate, and dense-buffer policies leaves the negative direction
+  intact in 5/6 rows; vanilla SGLD with frozen BN collapses to random
+  predictions and is reported as an invalid sampler setting, so the result
+  is not a BN-buffer artifact;
+  \item direct distribution statistical unit. Pooled direct mode/ticket
+  p-values over posterior samples are descriptive over correlated samples;
+  the SGLD, cSGLD multichain, rank-128 Laplace, and joint-group Laplace
+  direct rows all write per-seed \texttt{mask\_artifacts.npz} for
+  seed-level paired audits, and the headline SGLD direction now spans ten
+  seeds (sign $p = 0.002$);
+  \item full-network exact/full-covariance Laplace or another still broader
+  high-fidelity posterior baseline. Current evidence includes multi-chain
+  cyclical SGLD, rank-128 low-rank Laplace, all-weight joint-group Laplace,
+  20-snapshot SWAG, low-rank Hessian-plus-diagonal Laplace, tensor-block and
+  joint-group full-covariance probes, and subspace HMC, but the exact dense
+  full-network CIFAR posterior remains absent;
+  \item broader learned-mask distribution variants. Gem-Miner-style score
+  training, Bernoulli/Concrete variational pruning, and hard-concrete L0 gates
+  do not rescue support, accuracy, calibration, or CIFAR-100 OOD behavior in
+  the current five-seed rows, but additional permutation-aware learned-mask
+  distributions would make this negative claim cleaner;
+  \item additional process-causality controls. The current residual-swap,
+  anatomy, predictor-mask, transfer, base compatibility, ordering,
+  stratification, IMP-process, tensor+score-matched round-exclusion,
+  residualized-score projection, posterior-residualized, and learned-subspace
+  residualized controls do not exhaust the possible causal interventions on the
+  pruning process;
+  \item Reproducibility Statement. The repository has a dependency list,
+  checked environment lock, Makefile targets, artifact verifier, CI workflow,
+  public release manifest, local release archive, source-only repository
+  snapshot, CPU artifact-verification container, GPU training-container
+  definition, external-validation runbook, and submission handoff. It still
+  lacks public archive, public repository, external CI, and external GPU-run
+  receipts.
+\end{itemize}
+
+Since the aligned, multi-chain, low-rank Laplace, block/joint-group Laplace,
+locked final-test, and BatchNorm-policy CIFAR runs preserve the current
+pattern, the next decisive empirical gap is an even stronger high-fidelity
+posterior baseline; if it stays near the chain-start/rewind controls, the
+negative result is the right paper, otherwise the claim should weaken to a
+partial-equivalence statement (the rank-128 Hessian-plus-diagonal row passes
+5/6 thresholds and is the strongest within-current-evidence example).
+
+\section*{Ethics Statement}
+
+This work uses standard public benchmark datasets and does not introduce human
+subjects data, private personal data, surveillance data, or safety-critical
+deployment claims. The main ethical risk is scientific overclaiming: readers
+could misinterpret the negative result as a theorem against Bayesian accounts
+of pruning rather than as a controlled empirical result under the tested
+architectures, posterior approximations, sparsities, and compute budget. We
+mitigate that risk by stating the operational support-equivalence criterion,
+reporting negative and bounded findings, preserving open limitations, and
+packaging code and artifacts for independent reproduction. Final submission
+still requires the human authors to review and acknowledge the applicable ICLR
+Code of Ethics.
+
+\clearpage
+\iflotteryiclr
+  \bibliographystyle{iclr2026_conference}
+\else
+  \bibliographystyle{plainnat}
+\fi
+\bibliography{refs}
+
+\iflotteryiclr
+  \section*{LLM Usage Disclosure}
+
+  LLM-based coding and writing assistants were used to help draft audit and
+  runbook scripts, generate reproducibility and submission-checklist
+  documentation, search for stale claims and missing evidence, and propose
+  edits to code comments and manuscript wording. They were not used as authors
+  and were not treated as sources of scientific evidence. All experimental
+  results were produced by the repository code and saved artifacts, and all
+  claims, references, code changes, and final manuscript text were reviewed and
+  accepted by the human authors.
+\fi
+
+\iflotteryincludeappendix
+  \clearpage
+  \appendix
+  \section{Anticipated Reviewer Objections and Responses}
+  \label{sec:reviewer-defense}
+
+  This appendix collects the five reviewer objections we judge most likely
+  for a negative-result paper of this scope, with the specific main-body or
+  audit-artifact evidence that addresses each. It is intended as a reading
+  guide rather than a substitute for the body.
+
+  \paragraph{O1: ``The covariance budget is too narrow; a richer posterior
+  would pass.''}
+  Section~\ref{sec:posterior-fails} reports a rank-16/32/64/128 low-rank
+  Hessian-plus-diagonal Laplace sweep, five exact block-diagonal and
+  joint-group full-covariance rows covering 22{,}064 to 270{,}896 trainable
+  weights, and a streamed exact joint-group probe over the full
+  270{,}896-weight vector. The rank-128 row is the only configuration that
+  crosses any gate axis (mask-overlap 0.816 with logit/activation CKA
+  0.932/0.910), and even there layer-sparsity KS and basin-count axes still
+  fail. The exact full-network full-covariance literal baseline is bounded
+  by the 553.1\,GiB / 1106.3\,GiB feasibility audit, not silently dropped.
+
+  \paragraph{O2: ``The result is a BatchNorm running-statistics artifact.''}
+  The full CIFAR sweep over \texttt{freeze}, \texttt{recalibrate}, and
+  \texttt{dense\_buffers} posterior BN policies, for both SGLD and cyclical
+  SGLD, has been executed and integrated. The eleven planned rerun entries
+  are all observed (one validation-selected, one locked final-test, six BN
+  policy ablations, three saved-artifact reruns). The single configuration
+  that collapses---vanilla SGLD with frozen BN---is reported as an invalid
+  sampler setting rather than evidence for the posterior-mode account, and
+  the remaining five of six BN rows preserve the negative direction.
+
+  \paragraph{O3: ``Channel alignment is too weak; the posterior matches
+  IMP after a permutation.''}
+  Activation-channel and weight-correlation alignment, record-level
+  post-hoc matching, a block-coordinate global-channel audit on the
+  saved full-data artifact, and an exact stage-1 enumeration over a small
+  ResNet subgraph are all reported in the main body. The
+  block-coordinate global-channel audit leaves the global posterior/ticket
+  Hamming near 0.21 (well below the 0.7 threshold), and exhaustive full-data
+  graph isomorphism is bounded as infeasible rather than silently skipped.
+
+  \paragraph{O4: ``This is only CIFAR-10 ResNet-20; the result will flip
+  under another architecture or dataset.''}
+  The TinyCNN architecture-generality cell in
+  Section~\ref{sec:posterior-fails} runs the same matched five-seed direct
+  probe on a non-residual three-convolution CNN with no global average
+  pooling, and reproduces the seed-level pattern: IMP beats the dense chain
+  start 5/5, posterior samples stay below both 5/5, and the
+  posterior-to-chain-start mask Hamming is 0.061 (95\% CI [0.060, 0.062]).
+  The dataset axis is now confirmed under the validation-selected
+  CIFAR-100 locked test (Section~\ref{sec:posterior-fails}); SVHN and
+  larger natural-image benchmarks remain scoped limitations in
+  Section~\ref{sec:limitations}.
+
+  \paragraph{O5: ``A negative result alone does not justify publication.''}
+  The contribution is intentionally three-part:
+  (i)~the controlled negative empirical result under a
+  \emph{pre-specified} support-equivalence gate, with locked-test
+  pre-registered predictions all confirmed
+  (Section~\ref{sec:operational-test});
+  (ii)~the positive trajectory and pruning-process account with
+  Proposition~\ref{prop:topk} and the IMP-only residual mechanism
+  (Section~\ref{sec:trajectory-process}); and
+  (iii)~a reusable posterior-vs-IMP audit framework (operational gate,
+  twelve-approximation harness, pre-registered locked-test protocol, and
+  audit suite) that any future posterior family can be tested against.
+
+  \section{Generated Evidence Tables}
+
+  \input{tables/statistical_summary.tex}
+\fi
+
+\iflotteryneurips
+  \clearpage
+  \input{neurips_checklist.tex}
+\fi
+
+\end{document}

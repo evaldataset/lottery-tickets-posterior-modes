@@ -1,0 +1,237 @@
+{
+  "direct_seed_level_audit_ready": true,
+  "artifact": "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_activation_aligned_saved_artifacts_r5_p0p3/20260506_230706/mask_artifacts.npz",
+  "paper_stats": "runs/paper_stats.json",
+  "artifact_metadata": {
+    "alignment_method": "activation",
+    "blocks_per_stage": 3,
+    "cnn_width": 32,
+    "data_seed": 0,
+    "dataset": "cifar10",
+    "depth": 3,
+    "hidden_dim": 128,
+    "input_shape": [
+      3,
+      32,
+      32
+    ],
+    "mask_encoding": "uint8_keep_mask_flattened_by_parameter_names",
+    "model": "resnet20",
+    "num_classes": 10,
+    "posterior_chain_init": "dense",
+    "posterior_chains": 1,
+    "posterior_sampler": "sgld",
+    "resnet_width": 16,
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ],
+    "state_encoding": "float32_flattened_by_parameter_names",
+    "test_subset": null,
+    "train_subset": null
+  },
+  "variants": [
+    {
+      "label": "raw_saved_artifact",
+      "mask_prefix": "",
+      "seed_count": 5,
+      "sample_count": 50,
+      "posterior_to_own_ticket_hamming": {
+        "mean": 0.21272857480361468,
+        "ci95_low": 0.20842850273068883,
+        "ci95_high": 0.21702864687654053
+      },
+      "chain_start_to_own_ticket_hamming": {
+        "mean": 0.20998169039040815,
+        "ci95_low": 0.20558177924854712,
+        "ci95_high": 0.21438160153226918
+      },
+      "posterior_minus_chain_hamming": {
+        "n": 5,
+        "positive": 5,
+        "negative": 0,
+        "zero": 0,
+        "two_sided_sign_p": 0.0625,
+        "mean": 0.0027468844132065295,
+        "ci95_low": 0.0024319092344859228,
+        "ci95_high": 0.0030618595919271363
+      },
+      "posterior_minus_chain_layer_keep_gap": {
+        "n": 5,
+        "positive": 0,
+        "negative": 5,
+        "zero": 0,
+        "two_sided_sign_p": 0.0625,
+        "mean": -0.0074704828230218855,
+        "ci95_low": -0.009100329737049634,
+        "ci95_high": -0.005840635908994138
+      },
+      "posterior_not_closer_than_chain_in_all_seeds": true,
+      "rows": [
+        {
+          "seed": 0,
+          "posterior_sample_count": 10,
+          "posterior_to_own_ticket_hamming_mean": 0.20971221428149547,
+          "chain_start_to_own_ticket_hamming": 0.20712745850806213,
+          "posterior_minus_chain_hamming": 0.0025847557734333393,
+          "posterior_layer_keep_gap_to_ticket": 0.06841879077230638,
+          "chain_layer_keep_gap_to_ticket": 0.07700417258522725,
+          "posterior_minus_chain_layer_keep_gap": -0.008585381812920873
+        },
+        {
+          "seed": 1,
+          "posterior_sample_count": 10,
+          "posterior_to_own_ticket_hamming_mean": 0.20932313507766817,
+          "chain_start_to_own_ticket_hamming": 0.20655897466186285,
+          "posterior_minus_chain_hamming": 0.0027641604158053223,
+          "posterior_layer_keep_gap_to_ticket": 0.06216530539772727,
+          "chain_layer_keep_gap_to_ticket": 0.0690410780986953,
+          "posterior_minus_chain_layer_keep_gap": -0.006875772700968022
+        },
+        {
+          "seed": 2,
+          "posterior_sample_count": 10,
+          "posterior_to_own_ticket_hamming_mean": 0.21452882286929298,
+          "chain_start_to_own_ticket_hamming": 0.21171224381312387,
+          "posterior_minus_chain_hamming": 0.0028165790561691106,
+          "posterior_layer_keep_gap_to_ticket": 0.059441674229271886,
+          "chain_layer_keep_gap_to_ticket": 0.0670377275357744,
+          "posterior_minus_chain_layer_keep_gap": -0.007596053306502516
+        },
+        {
+          "seed": 3,
+          "posterior_sample_count": 10,
+          "posterior_to_own_ticket_hamming_mean": 0.21245348768531097,
+          "chain_start_to_own_ticket_hamming": 0.20933494772901778,
+          "posterior_minus_chain_hamming": 0.003118539956293187,
+          "posterior_layer_keep_gap_to_ticket": 0.0576202043218645,
+          "chain_layer_keep_gap_to_ticket": 0.0631751269202441,
+          "posterior_minus_chain_layer_keep_gap": -0.0055549225983796
+        },
+        {
+          "seed": 4,
+          "posterior_sample_count": 10,
+          "posterior_to_own_ticket_hamming_mean": 0.21762521410430571,
+          "chain_start_to_own_ticket_hamming": 0.21517482723997403,
+          "posterior_minus_chain_hamming": 0.0024503868643316884,
+          "posterior_layer_keep_gap_to_ticket": 0.06367042824074072,
+          "chain_layer_keep_gap_to_ticket": 0.07241071193707914,
+          "posterior_minus_chain_layer_keep_gap": -0.008740283696338419
+        }
+      ]
+    },
+    {
+      "label": "activation_aligned_saved_artifact",
+      "mask_prefix": "activation_aligned_",
+      "seed_count": 5,
+      "sample_count": 50,
+      "posterior_to_own_ticket_hamming": {
+        "mean": 0.24507279546394192,
+        "ci95_low": 0.22657303638257514,
+        "ci95_high": 0.2635725545453087
+      },
+      "chain_start_to_own_ticket_hamming": {
+        "mean": 0.2430822160533932,
+        "ci95_low": 0.2241809334758265,
+        "ci95_high": 0.2619834986309599
+      },
+      "posterior_minus_chain_hamming": {
+        "n": 5,
+        "positive": 5,
+        "negative": 0,
+        "zero": 0,
+        "two_sided_sign_p": 0.0625,
+        "mean": 0.0019905794105487262,
+        "ci95_low": 0.00082103199936965,
+        "ci95_high": 0.003160126821727802
+      },
+      "posterior_minus_chain_layer_keep_gap": {
+        "n": 5,
+        "positive": 0,
+        "negative": 5,
+        "zero": 0,
+        "two_sided_sign_p": 0.0625,
+        "mean": -0.0074704828230218855,
+        "ci95_low": -0.009100329737049634,
+        "ci95_high": -0.005840635908994138
+      },
+      "posterior_not_closer_than_chain_in_all_seeds": true,
+      "rows": [
+        {
+          "seed": 0,
+          "posterior_sample_count": 10,
+          "posterior_to_own_ticket_hamming_mean": 0.21843511901246235,
+          "chain_start_to_own_ticket_hamming": 0.21596479829897822,
+          "posterior_minus_chain_hamming": 0.002470320713484131,
+          "posterior_layer_keep_gap_to_ticket": 0.06841879077230638,
+          "chain_layer_keep_gap_to_ticket": 0.07700417258522725,
+          "posterior_minus_chain_layer_keep_gap": -0.008585381812920873
+        },
+        {
+          "seed": 1,
+          "posterior_sample_count": 10,
+          "posterior_to_own_ticket_hamming_mean": 0.25083205362943717,
+          "chain_start_to_own_ticket_hamming": 0.24746766286693048,
+          "posterior_minus_chain_hamming": 0.0033643907625066916,
+          "posterior_layer_keep_gap_to_ticket": 0.06216530539772727,
+          "chain_layer_keep_gap_to_ticket": 0.0690410780986953,
+          "posterior_minus_chain_layer_keep_gap": -0.006875772700968022
+        },
+        {
+          "seed": 2,
+          "posterior_sample_count": 10,
+          "posterior_to_own_ticket_hamming_mean": 0.2521203709172524,
+          "chain_start_to_own_ticket_hamming": 0.2503100820979269,
+          "posterior_minus_chain_hamming": 0.001810288819325545,
+          "posterior_layer_keep_gap_to_ticket": 0.059441674229271886,
+          "chain_layer_keep_gap_to_ticket": 0.0670377275357744,
+          "posterior_minus_chain_layer_keep_gap": -0.007596053306502516
+        },
+        {
+          "seed": 3,
+          "posterior_sample_count": 10,
+          "posterior_to_own_ticket_hamming_mean": 0.25169142401512024,
+          "chain_start_to_own_ticket_hamming": 0.2505315693107318,
+          "posterior_minus_chain_hamming": 0.0011598547043884522,
+          "posterior_layer_keep_gap_to_ticket": 0.0576202043218645,
+          "chain_layer_keep_gap_to_ticket": 0.0631751269202441,
+          "posterior_minus_chain_layer_keep_gap": -0.0055549225983796
+        },
+        {
+          "seed": 4,
+          "posterior_sample_count": 10,
+          "posterior_to_own_ticket_hamming_mean": 0.2522850097454374,
+          "chain_start_to_own_ticket_hamming": 0.25113696769239857,
+          "posterior_minus_chain_hamming": 0.0011480420530388113,
+          "posterior_layer_keep_gap_to_ticket": 0.06367042824074072,
+          "chain_layer_keep_gap_to_ticket": 0.07241071193707914,
+          "posterior_minus_chain_layer_keep_gap": -0.008740283696338419
+        }
+      ]
+    }
+  ],
+  "interpretation_checks": {
+    "seed_level_artifact_available_for_saved_full_data_sgld": true,
+    "pooled_direct_distribution_pvalues_are_descriptive": true,
+    "raw_posterior_not_closer_than_chain_in_5_of_5_seeds": true,
+    "activation_aligned_posterior_not_closer_than_chain_in_5_of_5_seeds": true,
+    "other_direct_rows_require_saved_masks_for_seed_level_reanalysis": true
+  },
+  "direct_rows_without_saved_masks": [
+    "Digits MLP::posterior_samples_vs_tickets",
+    "CIFAR subset ResNet::posterior_samples_vs_tickets",
+    "CIFAR subset act. pilot::posterior_samples_vs_tickets",
+    "CIFAR full ResNet::posterior_samples_vs_tickets",
+    "CIFAR full cSGLD multi-chain::posterior_samples_vs_tickets",
+    "CIFAR full cSGLD independent::posterior_samples_vs_tickets",
+    "CIFAR full LowRank128Lap::posterior_samples_vs_tickets",
+    "CIFAR full JointDiagLap270k::posterior_samples_vs_tickets"
+  ],
+  "risk_flags": [],
+  "open_risk_flags": [
+    "direct_rows_missing_saved_masks"
+  ]
+}

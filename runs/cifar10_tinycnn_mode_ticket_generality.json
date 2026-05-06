@@ -1,0 +1,96 @@
+{
+  "source_run": "runs/cifar10_tinycnn_long30_rewind1_mode_ticket_distribution_sgld_r5_p0p3/20260521_135526",
+  "dataset": "cifar10",
+  "model": "tiny-cnn",
+  "seeds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "seed_count": 5,
+  "imp_rounds": 5,
+  "prune_fraction": 0.3,
+  "posterior_sampler": "sgld",
+  "samples_per_seed": 10,
+  "evaluation_split": "test",
+  "per_seed": [
+    {
+      "seed": 0.0,
+      "dense_accuracy": 0.7732,
+      "imp_accuracy": 0.7869,
+      "imp_sparsity": 0.8319322892676186,
+      "posterior_sample_accuracy_mean": 0.7306900000000001,
+      "posterior_to_chain_start_hamming_mean": 0.06151543067710732
+    },
+    {
+      "seed": 1.0,
+      "dense_accuracy": 0.7741,
+      "imp_accuracy": 0.7925,
+      "imp_sparsity": 0.8319322892676186,
+      "posterior_sample_accuracy_mean": 0.73115,
+      "posterior_to_chain_start_hamming_mean": 0.062048019345923536
+    },
+    {
+      "seed": 2.0,
+      "dense_accuracy": 0.7921,
+      "imp_accuracy": 0.7934,
+      "imp_sparsity": 0.8319322892676186,
+      "posterior_sample_accuracy_mean": 0.74585,
+      "posterior_to_chain_start_hamming_mean": 0.059811146936895446
+    },
+    {
+      "seed": 3.0,
+      "dense_accuracy": 0.786,
+      "imp_accuracy": 0.7948,
+      "imp_sparsity": 0.8319322892676186,
+      "posterior_sample_accuracy_mean": 0.74457,
+      "posterior_to_chain_start_hamming_mean": 0.06126497005988023
+    },
+    {
+      "seed": 4.0,
+      "dense_accuracy": 0.7783,
+      "imp_accuracy": 0.7872,
+      "imp_sparsity": 0.8319322892676186,
+      "posterior_sample_accuracy_mean": 0.7384000000000001,
+      "posterior_to_chain_start_hamming_mean": 0.06123618148318747
+    }
+  ],
+  "aggregates": {
+    "dense_accuracy": {
+      "mean": 0.78074,
+      "std": 0.008118066272210409,
+      "ci_low": 0.7714059598027113,
+      "ci_high": 0.7900740401972887
+    },
+    "imp_accuracy": {
+      "mean": 0.79096,
+      "std": 0.003663741257239623,
+      "ci_low": 0.786747481030476,
+      "ci_high": 0.795172518969524
+    },
+    "imp_sparsity": {
+      "mean": 0.8319322892676186,
+      "std": 0.0,
+      "ci_low": 0.8319322892676186,
+      "ci_high": 0.8319322892676186
+    },
+    "posterior_sample_accuracy_mean": {
+      "mean": 0.738132,
+      "std": 0.007162731322617078,
+      "ci_low": 0.7298963907002151,
+      "ci_high": 0.746367609299785
+    },
+    "posterior_to_chain_start_hamming_mean": {
+      "mean": 0.0611751497005988,
+      "std": 0.0008291544903576029,
+      "ci_low": 0.060221799348033504,
+      "ci_high": 0.062128500053164094
+    }
+  },
+  "imp_beats_dense_seeds": 5,
+  "posterior_below_dense_seeds": 5,
+  "posterior_below_imp_seeds": 5,
+  "generality_holds": true
+}

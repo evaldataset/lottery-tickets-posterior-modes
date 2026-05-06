@@ -1,0 +1,228 @@
+{
+  "generated_at": "2026-06-10T13:28:39.147777+00:00",
+  "groups": [
+    {
+      "active": true,
+      "group": "final_venue_submission",
+      "missing_required_phrases": [],
+      "mitigation_documented": true,
+      "mitigation_type": "operator_submission_gate",
+      "open_blockers": [
+        "iclr_2027_official_cfp_not_observed",
+        "iclr_2027_official_author_guide_not_observed",
+        "iclr_openreview_author_profile_and_coi_not_recorded",
+        "iclr_openreview_submission_receipt_not_observed",
+        "iclr_code_of_ethics_author_acknowledgement_not_recorded",
+        "llm_usage_disclosure_author_confirmation_not_recorded"
+      ],
+      "required_phrase_checks": [
+        {
+          "phrase": "official ICLR 2027 call has not been observed",
+          "present": true
+        },
+        {
+          "phrase": "official 2027 CFP \ubbf8\uad00\uce21",
+          "present": true
+        },
+        {
+          "phrase": "author/COI",
+          "present": true
+        },
+        {
+          "phrase": "ethics/LLM author confirmations",
+          "present": true
+        }
+      ]
+    },
+    {
+      "active": false,
+      "group": "locked_final_test",
+      "missing_required_phrases": [],
+      "mitigation_documented": false,
+      "mitigation_type": "paper_limitation_and_run_queue",
+      "open_blockers": [],
+      "required_phrase_checks": [
+        {
+          "phrase": "locked final test rerun is still required",
+          "present": false
+        },
+        {
+          "phrase": "diagnostic falsification evidence rather than final model-selection evidence",
+          "present": false
+        },
+        {
+          "phrase": "locked_final_test_sgld_full_cifar",
+          "present": true
+        }
+      ]
+    },
+    {
+      "active": false,
+      "group": "batchnorm_policy_ablation",
+      "missing_required_phrases": [],
+      "mitigation_documented": false,
+      "mitigation_type": "paper_limitation_and_run_queue",
+      "open_blockers": [],
+      "required_phrase_checks": [
+        {
+          "phrase": "BatchNorm buffers in sampled state dictionaries",
+          "present": true
+        },
+        {
+          "phrase": "full CIFAR sensitivity runs remain to be completed",
+          "present": false
+        },
+        {
+          "phrase": "bn_recalibrate_csgld_full_cifar",
+          "present": true
+        }
+      ]
+    },
+    {
+      "active": false,
+      "group": "saved_artifact_seed_level_reruns",
+      "missing_required_phrases": [],
+      "mitigation_documented": false,
+      "mitigation_type": "paper_limitation_and_run_queue",
+      "open_blockers": [],
+      "required_phrase_checks": [
+        {
+          "phrase": "Pooled direct mode/ticket p-values over posterior samples are descriptive",
+          "present": true
+        },
+        {
+          "phrase": "saved-mask reruns",
+          "present": false
+        },
+        {
+          "phrase": "saved_artifacts_jointdiag",
+          "present": true
+        }
+      ]
+    },
+    {
+      "active": true,
+      "group": "strict_external_validation",
+      "missing_required_phrases": [],
+      "mitigation_documented": true,
+      "mitigation_type": "paper_reproducibility_caveat_and_external_runbook",
+      "open_blockers": [
+        "public_release_upload_not_verified",
+        "public_repository_state_not_verified",
+        "external_ci_run_not_observed",
+        "external_gpu_container_run_not_observed"
+      ],
+      "required_phrase_checks": [
+        {
+          "phrase": "lacks public archive, public repository, external CI, and external GPU-run receipts",
+          "present": true
+        },
+        {
+          "phrase": "public_release_upload_not_verified",
+          "present": true
+        },
+        {
+          "phrase": "external_gpu_container_run_not_observed",
+          "present": true
+        }
+      ]
+    },
+    {
+      "active": true,
+      "group": "formal_external_screening",
+      "missing_required_phrases": [],
+      "mitigation_documented": true,
+      "mitigation_type": "operator_screening_gate",
+      "open_blockers": [
+        "formal_external_plagiarism_database_screen_not_performed"
+      ],
+      "required_phrase_checks": [
+        {
+          "phrase": "not a formal plagiarism detector",
+          "present": true
+        },
+        {
+          "phrase": "formal_external_plagiarism_database_screen_not_performed",
+          "present": true
+        },
+        {
+          "phrase": "Formal screening completed: False",
+          "present": true
+        }
+      ]
+    },
+    {
+      "active": true,
+      "group": "backup_venue_cfp_watch",
+      "missing_required_phrases": [],
+      "mitigation_documented": true,
+      "mitigation_type": "venue_watch_gate",
+      "open_blockers": [
+        "aistats_2027_official_cfp_not_observed",
+        "aaai_2027_official_cfp_not_observed",
+        "wsdm_2027_official_cfp_not_observed",
+        "www_2027_official_cfp_not_observed"
+      ],
+      "required_phrase_checks": [
+        {
+          "phrase": "Official AISTATS 2027 CFP is not observed",
+          "present": true
+        },
+        {
+          "phrase": "Official AAAI 2027 CFP is not observed",
+          "present": true
+        },
+        {
+          "phrase": "not a 2027 paper CFP",
+          "present": true
+        },
+        {
+          "phrase": "A 2027 research-track CFP is not observed",
+          "present": true
+        }
+      ]
+    }
+  ],
+  "interpretation": {
+    "all_open_blockers_have_scope_mitigation": true,
+    "audit_does_not_reduce_scientific_or_external_blockers": true,
+    "paper_or_operator_docs_keep_claims_scoped": true
+  },
+  "missing_scan_paths": [],
+  "not_blocker_closure_evidence": true,
+  "open_blocker_claim_scope_audit_ready": true,
+  "open_blocker_count": 15,
+  "open_risk_flags": [
+    "iclr_2027_official_cfp_not_observed",
+    "iclr_2027_official_author_guide_not_observed",
+    "iclr_openreview_author_profile_and_coi_not_recorded",
+    "iclr_openreview_submission_receipt_not_observed",
+    "iclr_code_of_ethics_author_acknowledgement_not_recorded",
+    "llm_usage_disclosure_author_confirmation_not_recorded",
+    "public_release_upload_not_verified",
+    "public_repository_state_not_verified",
+    "external_ci_run_not_observed",
+    "external_gpu_container_run_not_observed",
+    "formal_external_plagiarism_database_screen_not_performed",
+    "aistats_2027_official_cfp_not_observed",
+    "aaai_2027_official_cfp_not_observed",
+    "wsdm_2027_official_cfp_not_observed",
+    "www_2027_official_cfp_not_observed"
+  ],
+  "risk_flags": [],
+  "scanned_paths": [
+    "paper/main.tex",
+    "docs/iclr_submission_readiness_audit.md",
+    "docs/venue_strategy_matrix.md",
+    "docs/locked_final_test_protocol_audit.md",
+    "docs/remaining_experiment_queue.md",
+    "docs/remaining_experiment_preflight_audit.md",
+    "docs/external_validation_readiness_audit.md",
+    "docs/formal_plagiarism_screening_receipt_audit.md",
+    "docs/manuscript_originality_audit.md",
+    "docs/reviewer_objection_matrix.md"
+  ],
+  "top_audit_json": "runs/top_conference_completion_audit.json",
+  "top_conference_goal_complete": false,
+  "ungrouped_open_blockers": []
+}

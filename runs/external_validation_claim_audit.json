@@ -1,0 +1,22 @@
+{
+  "external_validation_claim_audit_ready": true,
+  "readiness_json": "runs/external_validation_readiness_audit.json",
+  "external_validation_ready": false,
+  "top_conference_release_ready": false,
+  "readiness_risk_flags": [
+    "external_ci_run_not_observed",
+    "external_gpu_container_run_not_observed",
+    "public_release_upload_not_verified",
+    "public_repository_state_not_verified"
+  ],
+  "scanned_file_count": 277,
+  "forbidden_rule_count": 7,
+  "findings": [],
+  "risk_flags": [],
+  "open_risk_flags": [
+    "external_ci_run_not_observed",
+    "external_gpu_container_run_not_observed",
+    "public_release_upload_not_verified",
+    "public_repository_state_not_verified"
+  ]
+}

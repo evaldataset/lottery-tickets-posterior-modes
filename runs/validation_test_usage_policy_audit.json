@@ -1,0 +1,452 @@
+{
+  "validation_test_usage_policy_audit_ready": true,
+  "data_module": "src/lottery/data.py",
+  "dataset_bundle_fields": [
+    "train_loader",
+    "test_loader",
+    "input_dim",
+    "input_shape",
+    "num_classes",
+    "train_size",
+    "test_size",
+    "val_loader",
+    "val_size"
+  ],
+  "dataset_has_validation_loader": true,
+  "digits_scaler_fit_on_train_only_detected": true,
+  "torchvision_first_n_subset_detected": false,
+  "torchvision_first_subset_option_available": true,
+  "first_subset_default_rows": [],
+  "torchvision_seeded_subset_option_detected": true,
+  "run_script_count": 30,
+  "test_loader_script_count": 20,
+  "validation_configurable_test_loader_script_count": 20,
+  "validation_unsupported_test_loader_script_count": 0,
+  "test_loader_usage_rows": [
+    {
+      "path": "scripts/run_block_laplace_probe.py",
+      "test_loader_hit_count": 2,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 318,
+          "text": "eval_loader = bundle.test_loader"
+        },
+        {
+          "line": 383,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_calibration_ood_probe.py",
+      "test_loader_hit_count": 3,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 169,
+          "text": ").test_loader"
+        },
+        {
+          "line": 429,
+          "text": "eval_loader = bundle.test_loader"
+        },
+        {
+          "line": 473,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_cifar_baseline.py",
+      "test_loader_hit_count": 1,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 86,
+          "text": "eval_loader = bundle.test_loader"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_digits_fullnet_laplace_probe.py",
+      "test_loader_hit_count": 4,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 86,
+          "text": "test_loader,"
+        },
+        {
+          "line": 91,
+          "text": "return evaluate(model, test_loader, device), predictions(model, test_loader, device)"
+        },
+        {
+          "line": 123,
+          "text": "eval_loader = bundle.test_loader"
+        },
+        {
+          "line": 188,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_digits_hmc_baseline.py",
+      "test_loader_hit_count": 2,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 73,
+          "text": "eval_loader = bundle.test_loader"
+        },
+        {
+          "line": 104,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_digits_pilot.py",
+      "test_loader_hit_count": 2,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 162,
+          "text": "eval_loader = bundle.test_loader"
+        },
+        {
+          "line": 226,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_head_laplace_probe.py",
+      "test_loader_hit_count": 2,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 125,
+          "text": "eval_loader = bundle.test_loader"
+        },
+        {
+          "line": 190,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_mode_ticket_distribution_probe.py",
+      "test_loader_hit_count": 2,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 322,
+          "text": "return bundle.test_loader"
+        },
+        {
+          "line": 1673,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_residual_anatomy_probe.py",
+      "test_loader_hit_count": 5,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 137,
+          "text": "test_loader: torch.utils.data.DataLoader,"
+        },
+        {
+          "line": 174,
+          "text": "metrics = evaluate(model, test_loader, device)"
+        },
+        {
+          "line": 191,
+          "text": "final_metrics = evaluate(final_model, test_loader, device)"
+        },
+        {
+          "line": 604,
+          "text": "eval_loader = bundle.test_loader"
+        },
+        {
+          "line": 683,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_residual_base_compatibility_probe.py",
+      "test_loader_hit_count": 1,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 417,
+          "text": "test_loader=artifact.eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_residual_cross_seed_transfer_probe.py",
+      "test_loader_hit_count": 3,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 213,
+          "text": "eval_loader = bundle.test_loader"
+        },
+        {
+          "line": 275,
+          "text": "test_loader=eval_loader,"
+        },
+        {
+          "line": 530,
+          "text": "test_loader=target.eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_residual_direct_transfer_probe.py",
+      "test_loader_hit_count": 1,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 535,
+          "text": "test_loader=target.eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_residual_imp_process_probe.py",
+      "test_loader_hit_count": 6,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 217,
+          "text": "test_loader: torch.utils.data.DataLoader,"
+        },
+        {
+          "line": 257,
+          "text": "metrics = evaluate(model, test_loader, device)"
+        },
+        {
+          "line": 274,
+          "text": "final_metrics = evaluate(final_model, test_loader, device)"
+        },
+        {
+          "line": 687,
+          "text": "eval_loader = bundle.test_loader"
+        },
+        {
+          "line": 743,
+          "text": "test_loader=eval_loader,"
+        },
+        {
+          "line": 838,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_residual_predictor_mask_probe.py",
+      "test_loader_hit_count": 5,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 212,
+          "text": "test_loader: torch.utils.data.DataLoader,"
+        },
+        {
+          "line": 232,
+          "text": "metrics = evaluate(model, test_loader, device)"
+        },
+        {
+          "line": 592,
+          "text": "eval_loader = bundle.test_loader"
+        },
+        {
+          "line": 673,
+          "text": "test_loader=eval_loader,"
+        },
+        {
+          "line": 745,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_residual_stratified_control_probe.py",
+      "test_loader_hit_count": 3,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 363,
+          "text": "eval_loader = bundle.test_loader"
+        },
+        {
+          "line": 419,
+          "text": "test_loader=eval_loader,"
+        },
+        {
+          "line": 477,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_sgld_movement_grid.py",
+      "test_loader_hit_count": 2,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 189,
+          "text": "eval_loader = bundle.test_loader"
+        },
+        {
+          "line": 254,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_subspace_hmc_probe.py",
+      "test_loader_hit_count": 5,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 168,
+          "text": "test_loader: torch.utils.data.DataLoader,"
+        },
+        {
+          "line": 201,
+          "text": "metrics[0] = evaluate(model, test_loader, device)"
+        },
+        {
+          "line": 208,
+          "text": "metrics[epoch] = evaluate(model, test_loader, device)"
+        },
+        {
+          "line": 378,
+          "text": "eval_loader = train_bundle.test_loader"
+        },
+        {
+          "line": 476,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_trajectory_mask_training_probe.py",
+      "test_loader_hit_count": 10,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 211,
+          "text": "test_loader: torch.utils.data.DataLoader,"
+        },
+        {
+          "line": 231,
+          "text": "metrics = evaluate(model, test_loader, device)"
+        },
+        {
+          "line": 232,
+          "text": "metrics.update(calibration_metrics(model, test_loader, device))"
+        },
+        {
+          "line": 284,
+          "text": "test_loader: torch.utils.data.DataLoader,"
+        },
+        {
+          "line": 290,
+          "text": "metrics = evaluate(model, test_loader, device)"
+        },
+        {
+          "line": 291,
+          "text": "metrics.update(calibration_metrics(model, test_loader, device))"
+        },
+        {
+          "line": 346,
+          "text": "eval_loader = bundle.test_loader"
+        },
+        {
+          "line": 426,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_trajectory_probe.py",
+      "test_loader_hit_count": 2,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 296,
+          "text": "eval_loader = bundle.test_loader"
+        },
+        {
+          "line": 375,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_trajectory_residual_probe.py",
+      "test_loader_hit_count": 5,
+      "validation_split_supported": true,
+      "first_hits": [
+        {
+          "line": 191,
+          "text": "test_loader: torch.utils.data.DataLoader,"
+        },
+        {
+          "line": 211,
+          "text": "metrics = evaluate(model, test_loader, device)"
+        },
+        {
+          "line": 434,
+          "text": "eval_loader = bundle.test_loader"
+        },
+        {
+          "line": 517,
+          "text": "test_loader=eval_loader,"
+        },
+        {
+          "line": 582,
+          "text": "test_loader=eval_loader,"
+        }
+      ]
+    }
+  ],
+  "validation_unsupported_test_loader_usage_rows": [],
+  "validation_selected_cifar_rerun_observed": true,
+  "locked_final_test_rerun_observed": true,
+  "validation_selected_summary_md": "docs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_validation_select_sgld_r5_p0p3.md",
+  "locked_final_test_summary_md": "docs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_locked_test_sgld_r5_p0p3.md",
+  "open_risk_flags": [],
+  "warning_flags": [
+    "test_loader_eval_paths_retained_but_validation_configurable"
+  ],
+  "risk_flags": [],
+  "interpretation": {
+    "no_data_leakage_seen_in_digits_scaler": true,
+    "validation_loader_supported_by_shared_bundle": true,
+    "validation_selected_cifar_rerun_observed": true,
+    "locked_final_test_rerun_still_required": false,
+    "test_metrics_are_diagnostic_until_locked_final_test": false,
+    "some_test_loader_scripts_support_validation_split": true,
+    "some_test_loader_scripts_still_lack_validation_split": false,
+    "seeded_subset_option_available_for_publishable_subset_rows": true,
+    "first_n_subset_is_legacy_explicit_only": true,
+    "all_test_loader_scripts_are_validation_configurable": true
+  },
+  "recommended_next_steps": [
+    "Use DatasetBundle.val_loader with --evaluation-split val for hyperparameter/model-selection diagnostics.",
+    "Keep paper-supporting scripts validation-configurable when adding new evaluation paths.",
+    "Run the locked final-test SGLD row once after validation selection and keep validation/test rows separate in paper tables.",
+    "Mark existing test-reported sweep rows as falsification diagnostics rather than unbiased benchmark estimates.",
+    "Keep --subset-strategy first as an explicit legacy/debug option only; default publishable subset evidence should remain seeded."
+  ]
+}

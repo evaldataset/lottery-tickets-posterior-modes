@@ -1,0 +1,43 @@
+{
+  "reference_integrity_audit_ready": true,
+  "paper": "paper/main.tex",
+  "bibliography": "paper/refs.bib",
+  "cited_key_count": 20,
+  "bib_entry_count": 20,
+  "missing_citations": [],
+  "unused_bib_entries": [],
+  "duplicate_keys": [],
+  "required_field_issues": [],
+  "suspicious_field_issues": [],
+  "expected_metadata_issues": [],
+  "expected_metadata_checked_key_count": 20,
+  "external_verification": {
+    "sakamoto2022pacbayes": {
+      "method": "arxiv_fetch_title_author_match",
+      "source": "https://arxiv.org/abs/2205.07320",
+      "verified_date": "2026-06-10",
+      "matched": "Analyzing Lottery Ticket Hypothesis from PAC-Bayesian Theory Perspective; Sakamoto, Sato (U. Tokyo)"
+    },
+    "kuhn2026bayesian": {
+      "method": "arxiv_fetch_title_author_match",
+      "source": "https://arxiv.org/abs/2602.18825",
+      "verified_date": "2026-06-10",
+      "matched": "Bayesian Lottery Ticket Hypothesis; Kuhn, Weyrauch, Heyen, Streit, Goetz, Debus (KIT/Helmholtz AI)"
+    }
+  },
+  "eprint_entries_without_external_verification": [],
+  "risk_flags": [],
+  "open_risk_flags": [
+    "formal_plagiarism_screening_not_performed"
+  ],
+  "interpretation": {
+    "all_cited_keys_have_bib_entries": true,
+    "all_cited_entries_have_required_fields": true,
+    "no_duplicate_bib_keys": true,
+    "no_placeholder_metadata_detected": true,
+    "key_method_and_competitor_metadata_present": true,
+    "all_cited_eprint_entries_externally_verified": true,
+    "all_cited_entries_have_expected_metadata_smoke": true,
+    "not_a_plagiarism_detector": true
+  }
+}

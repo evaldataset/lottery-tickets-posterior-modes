@@ -1,0 +1,109 @@
+{
+  "external_cuda_handoff_bundle_verified": false,
+  "bundle": "runs/external_cuda_handoff_r18_bundle.tar.gz",
+  "sidecar": "runs/external_cuda_handoff_r18_bundle.tar.gz.sha256",
+  "bundle_sha256": "e76c7c95aa2ece49b121a43a3e964e690eb90d143751ca9f3e097fb5dd4ac8cc",
+  "expected_sha256": "e76c7c95aa2ece49b121a43a3e964e690eb90d143751ca9f3e097fb5dd4ac8cc",
+  "sidecar_sha256": "e76c7c95aa2ece49b121a43a3e964e690eb90d143751ca9f3e097fb5dd4ac8cc",
+  "sidecar_text": "e76c7c95aa2ece49b121a43a3e964e690eb90d143751ca9f3e097fb5dd4ac8cc  external_cuda_handoff_r18_bundle.tar.gz",
+  "expected_members": [
+    "apply_external_gpu_receipt_r18.py",
+    "external_cuda_github_self_hosted_workflow_r18.yml",
+    "external_cuda_handoff_r18.commands.sh",
+    "external_cuda_handoff_r18.md",
+    "external_cuda_host_selection_2026-05-07.md",
+    "external_cuda_vm_preflight_ubuntu.sh"
+  ],
+  "members": [
+    "apply_external_gpu_receipt_r18.py",
+    "external_cuda_github_self_hosted_workflow_r18.yml",
+    "external_cuda_handoff_r18.commands.sh",
+    "external_cuda_handoff_r18.md",
+    "external_cuda_host_selection_2026-05-07.md",
+    "external_cuda_vm_preflight_ubuntu.sh"
+  ],
+  "missing_members": [],
+  "extra_members": [],
+  "forbidden_members": [],
+  "sidecar_findings": [],
+  "tar_findings": [],
+  "extracted_findings": [],
+  "local_operator_note_findings": [],
+  "local_operator_note_details": {
+    "path": "runs/external_cuda_issue_followup_comment_2026-05-08.md",
+    "present": true,
+    "missing_snippets": [],
+    "sha256": "ed7f3388dd0d47f2d0b018003e554d3421cbb3780cb9013a23db132ccc4a7046"
+  },
+  "operator_findings": [],
+  "operator_bundle": "dist/tmlr_operator_handoff_2026-05-08/cuda/external_cuda_handoff_r18_bundle.tar.gz",
+  "operator_bundle_sha256": "e76c7c95aa2ece49b121a43a3e964e690eb90d143751ca9f3e097fb5dd4ac8cc",
+  "operator_sidecar": "dist/tmlr_operator_handoff_2026-05-08/cuda/external_cuda_handoff_r18_bundle.tar.gz.sha256",
+  "operator_sidecar_sha256": "e76c7c95aa2ece49b121a43a3e964e690eb90d143751ca9f3e097fb5dd4ac8cc",
+  "public_url_findings": [
+    "public_sidecar_expected_sha_missing",
+    "public_bundle_sha256_mismatch",
+    "public_operator_note_missing_required_snippets"
+  ],
+  "public_url_details": {
+    "handoff_url": "https://github.com/evaldataset/lottery-ticket-bayesian-modes-artifact/releases/download/artifact-2026-05-06-r18/external_cuda_handoff_r18_bundle.tar.gz",
+    "handoff_sha_url": "https://github.com/evaldataset/lottery-ticket-bayesian-modes-artifact/releases/download/artifact-2026-05-06-r18/external_cuda_handoff_r18_bundle.tar.gz.sha256",
+    "checked": true,
+    "public_sidecar_text": "8e0371f0b6aadfea1b282e37b0045788228725271f18d95a7fa6b7716816c21a  external_cuda_handoff_r18_bundle.tar.gz",
+    "public_bundle_sha256": "8e0371f0b6aadfea1b282e37b0045788228725271f18d95a7fa6b7716816c21a",
+    "public_bundle_bytes": 5714,
+    "operator_note_url": "https://github.com/evaldataset/lottery-ticket-bayesian-modes-artifact/issues/1#issuecomment-4402022060",
+    "operator_note_api_url": "https://api.github.com/repos/evaldataset/lottery-ticket-bayesian-modes-artifact/issues/comments/4402022060",
+    "operator_note_fetch_diagnostics": [],
+    "operator_note_fetch_findings": [],
+    "operator_note_comment_id": "4402022060",
+    "operator_note_updated_at": "2026-05-08T03:12:38Z",
+    "operator_note_missing_snippets": [
+      "receipt_candidate.external_gpu_container.commit: 20db0bf4917736fdb59390f33cdbf371bc41da7e"
+    ]
+  },
+  "github_api_fetcher_findings": [],
+  "github_api_fetcher_cases": [
+    {
+      "name": "urllib_success",
+      "passed": true,
+      "payload_body": "urllib ok",
+      "findings": []
+    },
+    {
+      "name": "urllib_failure_gh_api_success",
+      "passed": true,
+      "payload_body": "gh api ok",
+      "findings": [
+        "urllib:<urlopen error fixture rate limit>"
+      ]
+    },
+    {
+      "name": "urllib_failure_gh_api_failure",
+      "passed": true,
+      "payload_body": "",
+      "findings": [
+        "urllib:<urlopen error fixture rate limit>",
+        "gh_api:fixture gh api failure"
+      ]
+    }
+  ],
+  "command_checks": {
+    "bash_n:external_cuda_handoff_r18.commands.sh": {
+      "command": "bash -n external_cuda_handoff_r18.commands.sh",
+      "exit_code": 0,
+      "stdout_tail": "",
+      "stderr_tail": ""
+    },
+    "bash_n:external_cuda_vm_preflight_ubuntu.sh": {
+      "command": "bash -n external_cuda_vm_preflight_ubuntu.sh",
+      "exit_code": 0,
+      "stdout_tail": "",
+      "stderr_tail": ""
+    }
+  },
+  "blockers": [
+    "external_cuda_handoff_public_urls_invalid"
+  ],
+  "check_urls": true
+}

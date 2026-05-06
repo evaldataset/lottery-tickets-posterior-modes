@@ -1,0 +1,75 @@
+{
+  "formal_plagiarism_screening_receipt_audit_ready": true,
+  "formal_screening_completed": false,
+  "receipt_observed": false,
+  "receipt_path": "docs/formal_plagiarism_screening_receipt.json",
+  "runbook": "runs/formal_plagiarism_screening_runbook.json",
+  "schema_version_expected": "formal_plagiarism_screening_receipt_v1",
+  "accepted_screening_targets": [
+    {
+      "role": "primary_iclr_submission_pdf",
+      "path": "paper/iclr_submission.pdf",
+      "exists": true,
+      "runbook_sha256": "6e45581ead217996a5a9893c91a7c68243d1fcc8e71fe52c6e56a7430a340703",
+      "current_sha256": "6e45581ead217996a5a9893c91a7c68243d1fcc8e71fe52c6e56a7430a340703",
+      "current_hash_matches_runbook": true
+    },
+    {
+      "role": "main_submission_pdf",
+      "path": "paper/main_submission.pdf",
+      "exists": true,
+      "runbook_sha256": "814a982a9e58d71248eabdf2a3532e87b2985569f79bb606564770ab7a7a540f",
+      "current_sha256": "814a982a9e58d71248eabdf2a3532e87b2985569f79bb606564770ab7a7a540f",
+      "current_hash_matches_runbook": true
+    },
+    {
+      "role": "paper_source_tex",
+      "path": "paper/main.tex",
+      "exists": true,
+      "runbook_sha256": "55a12edc5427b5704ed3398137ca99c45947fc4956040093595338848176c486",
+      "current_sha256": "55a12edc5427b5704ed3398137ca99c45947fc4956040093595338848176c486",
+      "current_hash_matches_runbook": true
+    },
+    {
+      "role": "bibliography_source_bib",
+      "path": "paper/refs.bib",
+      "exists": true,
+      "runbook_sha256": "2ca52c6d19659b7397109579dabfa21fa5536a83b80d6d8f907a15342f82fc1e",
+      "current_sha256": "2ca52c6d19659b7397109579dabfa21fa5536a83b80d6d8f907a15342f82fc1e",
+      "current_hash_matches_runbook": true
+    }
+  ],
+  "required_fields": [
+    "schema_version",
+    "screening_tool_or_vendor",
+    "screening_report_id_or_url",
+    "screening_report_export_sha256_or_private_location",
+    "screened_file_path",
+    "screened_file_sha256",
+    "screened_date_utc",
+    "operator",
+    "screening_database_or_corpus",
+    "external_corpus_searched",
+    "total_similarity_percent",
+    "max_single_source_similarity_percent",
+    "top_matched_sources",
+    "excluded_sources_or_filters",
+    "human_review_disposition",
+    "material_matches_reviewed",
+    "self_overlap_or_prior_version_reviewed",
+    "pass",
+    "notes"
+  ],
+  "field_statuses": [],
+  "invalid_fields": [],
+  "hash_validation": {},
+  "risk_flags": [],
+  "open_risk_flags": [
+    "formal_external_plagiarism_database_screen_not_performed"
+  ],
+  "interpretation": {
+    "receipt_intake_gate_only": true,
+    "missing_receipt_is_external_blocker_not_local_script_failure": true,
+    "local_originality_audits_do_not_close_formal_screening": true
+  }
+}

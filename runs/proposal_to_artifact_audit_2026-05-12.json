@@ -1,0 +1,126 @@
+{
+  "proposal_to_artifact_audit_verified": true,
+  "goal_complete": false,
+  "source_proposal": "proposal_A3_lottery_ticket_bayesian_modes.md",
+  "paper": "paper/main.tex",
+  "row_count": 10,
+  "open_or_bounded_row_count": 3,
+  "findings": [],
+  "rows": [
+    {
+      "proposal_item": "Source proposal and thesis reframing",
+      "current_resolution": "The positive 1:1 mode-ticket thesis has been reframed as a scoped negative support-equivalence paper.",
+      "status": "covered_negative_reframe",
+      "evidence": [
+        "proposal_A3_lottery_ticket_bayesian_modes.md",
+        "docs/research_roadmap.md",
+        "paper/main.tex"
+      ],
+      "key_numbers": "paper title and roadmap both state the negative posterior-mode resolution",
+      "remaining_gap": "Venue editing can tighten wording, but the claim direction is settled in the current draft."
+    },
+    {
+      "proposal_item": "H1: lottery tickets correspond one-to-one to posterior modes",
+      "current_resolution": "Falsified under the current support-distribution and direct mode/ticket tests.",
+      "status": "falsified_current_artifacts",
+      "evidence": [
+        "runs/paper_stats.json",
+        "docs/paper_claim_ledger.md"
+      ],
+      "key_numbers": "posterior>random 58/59; posterior>chain by >0.005 0/59; rewind>posterior by >0.005 55/57; direct CIFAR sample rows one-cluster 7/7, layer-KS failures 7/7, hamming failures 6/7",
+      "remaining_gap": "Exact dense full-covariance CIFAR posterior evidence is infeasible locally and remains bounded rather than closed."
+    },
+    {
+      "proposal_item": "H2: posterior mode count determines ticket diversity",
+      "current_resolution": "Unsupported: full-data direct posterior rows collapse to one posterior basin while IMP keeps seed-level ticket diversity.",
+      "status": "unsupported_current_artifacts",
+      "evidence": [
+        "runs/paper_stats.json",
+        "docs/research_roadmap.md"
+      ],
+      "key_numbers": "direct sample rows with one posterior cluster 7/7; LowRank128Lap p=1.98e-06, hamming=0.8163; JointDiag270k p=1.09e-08, hamming=0.0000",
+      "remaining_gap": "A different exact posterior method could be proposed, but current covariance-fidelity trend does not point toward rescue."
+    },
+    {
+      "proposal_item": "H3: variational mode-finding pruning should match accuracy and improve calibration",
+      "current_resolution": "Partially implemented and negative for the paper claim: variational pruning can lower ECE but loses accuracy, Brier, OOD AUROC, and ticket support.",
+      "status": "covered_negative",
+      "evidence": [
+        "runs/paper_stats.json",
+        "docs/paper_claim_ledger.md"
+      ],
+      "key_numbers": "digits variational accuracy-IMP -0.0078; digits support-to-IMP 0.3822; CIFAR variational acc/AUROC 0.8301/0.7754 vs IMP 0.8953/0.8306",
+      "remaining_gap": "Do not expand into a broad pruning benchmark unless reviewers ask; the current baseline is enough for the scoped negative claim."
+    },
+    {
+      "proposal_item": "H4: random-weight networks as prior mode finding",
+      "current_resolution": "Bounded by learned-mask controls rather than developed into a separate Ramanujan-style study.",
+      "status": "bounded_negative",
+      "evidence": [
+        "runs/paper_stats.json",
+        "docs/research_roadmap.md"
+      ],
+      "key_numbers": "full-data learned-mask support-to-IMP: gem_miner=0.0917, variational_prune=0.0907, hard_concrete=0.0922; IMP accuracy 0.8983",
+      "remaining_gap": "A full random-weight-network replication is de-scoped; the submitted paper should state this as out of scope."
+    },
+    {
+      "proposal_item": "Posterior sampler and covariance-fidelity ladder",
+      "current_resolution": "Covered across stochastic samplers, SWAG, Laplace variants, subspace HMC, and covariance-fidelity audits.",
+      "status": "covered_with_bounded_limitation",
+      "evidence": [
+        "runs/paper_stats.json",
+        "runs/posterior_covariance_robustness_audit.json"
+      ],
+      "key_numbers": "movement samplers=DiagLap, KFACLap, LowRank128Lap, LowRank32Lap, LowRank64Lap, LowRankLap, SGHMC, SGLD, SWAG20, cSGLD; covariance movement rows=9; direct rows=2; dense full covariance memory=553.1466 GiB",
+      "remaining_gap": "Literal dense full-covariance CIFAR posterior is outside the single-workstation memory budget."
+    },
+    {
+      "proposal_item": "Proposal metrics: KS, MMD, Wasserstein, Hamming, CKA, Hungarian, basin entropy",
+      "current_resolution": "Implemented in direct mode/ticket distribution probes and summarized into paper statistics.",
+      "status": "covered",
+      "evidence": [
+        "runs/paper_stats.json",
+        "scripts/run_mode_ticket_distribution_probe.py"
+      ],
+      "key_numbers": "required direct metric keys present in the current CIFAR direct rows",
+      "remaining_gap": "Metric interpretation should remain explicit: function-space CKA alone is not enough for H1."
+    },
+    {
+      "proposal_item": "Permutation and alignment risk",
+      "current_resolution": "First-order activation/weight alignment is negative; saved-artifact record matching and global channel audits bound the post-hoc issue.",
+      "status": "bounded_open_limitation",
+      "evidence": [
+        "runs/mode_ticket_alignment_artifact_audit.json",
+        "runs/cifar10_resnet20_long30_rewind1_mode_ticket_distribution_activation_aligned_saved_artifacts_global_channel_audit.json",
+        "runs/resnet_channel_permutation_exhaustive_feasibility_audit.json"
+      ],
+      "key_numbers": "aligned rows fail layer-KS=True; global channel supported=True; stage-1 exact assignments=128; full search log10 assignments=840.4",
+      "remaining_gap": "Exhaustive full-data graph/channel search is infeasible and unimplemented."
+    },
+    {
+      "proposal_item": "Top-conference venue targeting",
+      "current_resolution": "Venue triage is now explicit: TMLR (rolling) is the primary target with a fully prepared local packet, ICLR 2027 and AISTATS 2027 are high-visibility backups, and faster CIKM/EMNLP deadlines are rejected unless the paper is substantially rescoped.",
+      "status": "venue_target_selected",
+      "evidence": [
+        "runs/venue_strategy_matrix.json",
+        "runs/iclr_submission_readiness_audit.json",
+        "runs/submission_handoff.json"
+      ],
+      "key_numbers": "primary=TMLR (rolling); backup1=ICLR 2027; backup2=AISTATS 2027",
+      "remaining_gap": "Author OpenReview/COI/ethics confirmations and the external CUDA-host GPU-container receipt must still be recorded before TMLR upload; official ICLR 2027 CFP/Author Guide observation remains the backup-venue blocker."
+    },
+    {
+      "proposal_item": "Submission and reproducibility state",
+      "current_resolution": "Local TMLR and ICLR-style manuscript packets, OpenReview paste packets, anonymous archive, source snapshot, locked final-test, full-CIFAR BN policy ablations, saved-artifact reruns, and the TinyCNN architecture-generality cell are ready; remaining blockers are author OpenReview profile/COI/ethics/LLM confirmations, formal external plagiarism screening, and public release/CI/GPU receipts (all external/author actions).",
+      "status": "external_blocked",
+      "evidence": [
+        "runs/submission_handoff.json",
+        "runs/external_validation_readiness_audit.json",
+        "runs/iclr_submission_readiness_audit.json",
+        "runs/venue_strategy_matrix.json"
+      ],
+      "key_numbers": "venue=TMLR (rolling); submission_handoff_ready=True; iclr_submission_ready=False; top_conference_release_ready=False",
+      "remaining_gap": "iclr_2027_official_cfp_not_observed, iclr_2027_official_author_guide_not_observed, iclr_openreview_author_profile_and_coi_not_recorded, iclr_openreview_submission_receipt_not_observed, iclr_code_of_ethics_author_acknowledgement_not_recorded, llm_usage_disclosure_author_confirmation_not_recorded, public_release_upload_not_verified, public_repository_state_not_verified, external_ci_run_not_observed, external_gpu_container_run_not_observed, formal_external_plagiarism_database_screen_not_performed, public_release_upload_not_verified, public_repository_state_not_verified, external_ci_run_not_observed, external_gpu_container_run_not_observed"
+    }
+  ]
+}
